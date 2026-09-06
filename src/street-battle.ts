@@ -92,7 +92,7 @@ export class StreetBattle implements CombatDirector {
   standDown(): void {
     this.joined = false;
     this.combat.defeated = false;
-    this.combat.shield = 100;
+    this.combat.shield = this.combat.maxShield;
     this.combat.projectiles = this.combat.projectiles.filter(p => p.owner !== 'player');
     for (const e of this.combat.enemies) { e.telegraph = 0; e.state = e.health > 0 ? 'advance' : 'down'; }
     this.emit('stand-down', 'Observer mode', 'Let the street settle. You are safe from the crossfire.');

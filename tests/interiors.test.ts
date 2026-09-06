@@ -38,7 +38,7 @@ function loreApproach(sim: Simulation, room: Interior): Vec2 {
   assert.fail(`no collision-safe interior lore approach in ${room.id}`);
 }
 
-test('interior identity remains nested within seven existing city districts', () => {
+test('interior identity remains nested within the expanded city districts', () => {
   const sim = new Simulation();
   assert.equal(INTERIORS.length, 3); assert.equal(sim.interior, null); assert.equal(sim.visitedInteriors.size, 0);
   for (const room of INTERIORS) {
@@ -51,7 +51,7 @@ test('interior identity remains nested within seven existing city districts', ()
     assert.ok(room.bounds.minZ >= district.bounds.minZ && room.bounds.maxZ <= district.bounds.maxZ);
   }
   for (const invalid of [{ x: NaN, z: 0 }, { x: Infinity, z: 0 }]) assert.equal(getInterior(invalid), null);
-  assert.equal(WORLD.districts.length, 7);
+  assert.equal(WORLD.districts.length, 10);
 });
 
 test('door actions select physical destinations on the other side and never offer flank-wall entry', () => {

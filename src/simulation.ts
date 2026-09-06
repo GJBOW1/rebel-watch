@@ -3,7 +3,7 @@ import layout from './world-layout.json';
 import { INTERIOR_LANDMARKS, getInterior } from './interiors';
 
 export const WORLD = layout;
-export type Zone = 'courtyard' | 'passage' | 'ridge' | 'market' | 'salvage' | 'landing' | 'watch';
+export type Zone = 'courtyard' | 'passage' | 'ridge' | 'market' | 'salvage' | 'landing' | 'watch' | 'refuge' | 'drydock' | 'bastion';
 export interface WalkArea { minX: number; maxX: number; minZ: number; maxZ: number }
 export const WALK_AREAS: WalkArea[] = [...layout.districts.map(d => d.bounds), ...layout.connections];
 const inArea = (p: Vec2, r: WalkArea) => p.x >= r.minX && p.x <= r.maxX && p.z >= r.minZ && p.z <= r.maxZ;

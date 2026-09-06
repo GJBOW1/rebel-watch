@@ -1,0 +1,359 @@
+{
+  "version": 1,
+  "assets": {
+    "grogu": {
+      "triangles": 3680,
+      "draws": 8,
+      "bounds": {
+        "minX": -0.6200000047683716,
+        "maxX": 0.6200000047683716,
+        "minY": 0.18000000715255737,
+        "maxY": 1.1390000581741333,
+        "minZ": -0.4699999988079071,
+        "maxZ": 0.4300000071525574
+      },
+      "joints": {
+        "Ship_Hull": [
+          0,
+          0,
+          0
+        ],
+        "Pram_Body": [
+          0,
+          0,
+          0
+        ],
+        "Pram_Canopy": [
+          0,
+          0.57,
+          -0.1
+        ],
+        "Actor_Body": [
+          0,
+          0,
+          0
+        ],
+        "Actor_Arm_L": [
+          -0.158,
+          0.733,
+          0.041
+        ],
+        "Actor_Arm_R": [
+          0.158,
+          0.733,
+          0.041
+        ],
+        "Actor_Head": [
+          0,
+          0.809,
+          0.043
+        ]
+      }
+    },
+    "vader": {
+      "triangles": 3382,
+      "draws": 13,
+      "bounds": {
+        "minX": -0.6624000072479248,
+        "maxX": 0.6624000072479248,
+        "minY": 0.0005000000237487257,
+        "maxY": 2.2149999141693115,
+        "minZ": -0.37299999594688416,
+        "maxZ": 0.3244999945163727
+      },
+      "joints": {
+        "Ship_Hull": [
+          0,
+          0,
+          0
+        ],
+        "Actor_Body": [
+          0,
+          0,
+          0
+        ],
+        "Actor_Leg_L": [
+          -0.15,
+          1.02,
+          0
+        ],
+        "Actor_Arm_L": [
+          -0.366,
+          1.535,
+          0
+        ],
+        "Actor_Leg_R": [
+          0.15,
+          1.02,
+          0
+        ],
+        "Actor_Arm_R": [
+          0.366,
+          1.535,
+          0
+        ],
+        "Actor_Cloak": [
+          0,
+          1.55,
+          -0.14
+        ],
+        "Actor_Head": [
+          0,
+          1.641,
+          0
+        ],
+        "Saber_Hilt": [
+          0.375,
+          0.85,
+          0.145
+        ],
+        "Saber_Blade": [
+          0.375,
+          1.115,
+          0.19
+        ]
+      }
+    },
+    "imperial-warden": {
+      "triangles": 3546,
+      "draws": 7,
+      "bounds": {
+        "minX": -0.5172710418701172,
+        "maxX": 0.5885999798774719,
+        "minY": 0.0,
+        "maxY": 1.9957900047302246,
+        "minZ": -0.4082050025463104,
+        "maxZ": 0.274710088968277
+      },
+      "joints": {
+        "Ship_Hull": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Actor_Leg_L": [
+          -0.14933000000000002,
+          0.94176,
+          0.0
+        ],
+        "Actor_Arm_L": [
+          -0.35207000000000005,
+          1.52382,
+          0.0
+        ],
+        "Actor_Leg_R": [
+          0.14933000000000002,
+          0.94176,
+          0.0
+        ],
+        "Actor_Arm_R": [
+          0.35207000000000005,
+          1.52382,
+          0.0
+        ],
+        "Actor_Head": [
+          0.0,
+          1.6186500000000001,
+          0.0
+        ],
+        "Actor_Body": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "rebel-fighter": {
+      "triangles": 3346,
+      "draws": 4,
+      "bounds": {
+        "minX": -4.75,
+        "maxX": 4.75,
+        "minY": 0.0,
+        "maxY": 2.1746439933776855,
+        "minZ": -4.039999961853027,
+        "maxZ": 4.480000019073486
+      },
+      "joints": {
+        "Ship_Hull": [
+          0,
+          0,
+          0
+        ],
+        "Engine_L": [
+          -1.08,
+          1.21,
+          -4.01
+        ],
+        "Muzzle_L": [
+          -4.4,
+          1.1,
+          2.96
+        ],
+        "Engine_R": [
+          1.08,
+          1.21,
+          -4.01
+        ],
+        "Muzzle_R": [
+          4.4,
+          1.1,
+          2.96
+        ]
+      }
+    },
+    "tie-fighter": {
+      "triangles": 3580,
+      "draws": 7,
+      "bounds": {
+        "minX": -3.5510001182556152,
+        "maxX": 3.5510001182556152,
+        "minY": -2.7810001373291016,
+        "maxY": 2.7810001373291016,
+        "minZ": -3.220806837081909,
+        "maxZ": 3.220806837081909
+      },
+      "joints": {
+        "Ship_Hull": [
+          0,
+          0,
+          0
+        ],
+        "Muzzle_L": [
+          -0.37,
+          -0.75,
+          1.07
+        ],
+        "Engine_L": [
+          -0.42,
+          0,
+          -1.0
+        ],
+        "Muzzle_R": [
+          0.37,
+          -0.75,
+          1.07
+        ],
+        "Engine_R": [
+          0.42,
+          0,
+          -1.0
+        ]
+      }
+    },
+    "ion-lance": {
+      "triangles": 508,
+      "draws": 2,
+      "bounds": {
+        "minX": -0.13599999248981476,
+        "maxX": 0.13599999248981476,
+        "minY": -0.1589999943971634,
+        "maxY": 0.2535000145435333,
+        "minZ": -0.07900000363588333,
+        "maxZ": 1.0049999952316284
+      },
+      "joints": {
+        "Ship_Hull": [
+          0,
+          0,
+          0
+        ],
+        "Weapon_Body": [
+          0,
+          0,
+          0
+        ],
+        "Muzzle": [
+          0,
+          0.12,
+          1.01
+        ]
+      }
+    },
+    "scatter-blaster": {
+      "triangles": 528,
+      "draws": 2,
+      "bounds": {
+        "minX": -0.1730000078678131,
+        "maxX": 0.1730000078678131,
+        "minY": -0.1589999943971634,
+        "maxY": 0.289000004529953,
+        "minZ": -0.07900000363588333,
+        "maxZ": 0.7350000143051147
+      },
+      "joints": {
+        "Ship_Hull": [
+          0,
+          0,
+          0
+        ],
+        "Weapon_Body": [
+          0,
+          0,
+          0
+        ],
+        "Muzzle": [
+          0,
+          0.14,
+          0.74
+        ]
+      }
+    },
+    "arc-repeater": {
+      "triangles": 784,
+      "draws": 2,
+      "bounds": {
+        "minX": -0.16699999570846558,
+        "maxX": 0.11500000208616257,
+        "minY": -0.1589999943971634,
+        "maxY": 0.210999995470047,
+        "minZ": -0.07900000363588333,
+        "maxZ": 0.8999999761581421
+      },
+      "joints": {
+        "Ship_Hull": [
+          0,
+          0,
+          0
+        ],
+        "Weapon_Body": [
+          0,
+          0,
+          0
+        ],
+        "Muzzle": [
+          0,
+          0.12,
+          0.905
+        ]
+      }
+    },
+    "landing-dock": {
+      "triangles": 3124,
+      "draws": 2,
+      "bounds": {
+        "minX": -4.0,
+        "maxX": 4.0,
+        "minY": -3.200000047683716,
+        "maxY": 0.3019999861717224,
+        "minZ": -3.0,
+        "maxZ": 3.0
+      },
+      "joints": {
+        "Ship_Hull": [
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "conventions": {
+    "actorForward": "+Z",
+    "humanoidFeet": "Y=0",
+    "rebel-fighter": "Landing feet Y=0; place on .02m pad at root Y=.025",
+    "tie-fighter": "Cockpit-centered origin Y=0; solar panels extend about \u00b12.8m",
+    "weapons": "Grip origin at(0,0,0); muzzle +Z; small weapons carry no texture image",
+    "grogu": "Pram_Body and Pram_Canopy are separate groups; Actor_Head and arms animate independently; hover with a small root Y offset."
+  }
+}

@@ -30,8 +30,8 @@ export function createRainPools(scene:THREE.Scene):Reflector {
         #include <colorspace_fragment>
       }`
   };
-  const water=new Reflector(new THREE.PlaneGeometry(124,100),{textureWidth:1536,textureHeight:1024,clipBias:.004,shader,multisample:0});
-  water.name='Rain pools — planar reflections';water.rotation.x=-Math.PI/2;water.position.set(8,.027,0);
+  const water=new Reflector(new THREE.PlaneGeometry(210,185),{textureWidth:1536,textureHeight:1024,clipBias:.004,shader,multisample:0});
+  water.name='Rain pools — planar reflections';water.rotation.x=-Math.PI/2;water.position.set(-6,.027,-20);
   (water.material as THREE.ShaderMaterial).transparent=true;(water.material as THREE.ShaderMaterial).depthWrite=false;water.renderOrder=2;
   const original=water.onBeforeRender;
   water.onBeforeRender=function(renderer,world,camera,geometry,material,group){if(!world.overrideMaterial) original.call(this,renderer,world,camera,geometry,material,group);};

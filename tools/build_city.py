@@ -153,7 +153,7 @@ def edge_life(bounds):
 
 # Shared threshold pavers and luminous guidance. No closed gate or threshold collider.
 GROUP='World_connections'
-for link in LAYOUT['connections']:
+for link in LAYOUT['connections'][:4]:
     local_floor((link['minX'],link['maxX'],link['minZ'],link['maxZ']))
     northsouth=link['maxZ']-link['minZ']>link['maxX']-link['minX']
     if northsouth:
@@ -416,7 +416,7 @@ edge_life(B)
 GROUP='World_landscape'
 rects=[(d['bounds']['minX']-.85,d['bounds']['maxX']+.85,d['bounds']['minZ']-.85,d['bounds']['maxZ']+.85) for d in LAYOUT['districts']]
 rects += [(l['minX']-.4,l['maxX']+.4,l['minZ']-.4,l['maxZ']+.4) for l in LAYOUT['connections']]
-vs=[];fs=[];step=3;minx=-78;minz=-75;nx=60;nz=52
+vs=[];fs=[];step=3;minx=-111;minz=-108;nx=73;nz=64
 for iz in range(nz):
     for ix in range(nx):
         x=minx+ix*step;z=minz+iz*step
@@ -443,9 +443,12 @@ def outer_rock(x,z,rx,rz,h):
     for row in range(2):
         for i in range(n):j=(i+1)%n;emit(vs,[(row*n+i,(row+1)*n+i,(row+1)*n+j),(row*n+i,(row+1)*n+j,row*n+j)],random.choice([stone3,stone4,slate4]))
     emit(vs,[tuple(range(3*n-1,2*n-1,-1))],stone3)
-for x,z,rx,rz,h in [(-58,-27,9,8,12),(-38,-45,9,8,11),(-17,-55,9,8,14),(0,-60,10,8,17),(19,-55,9,10,11),(45,-37,9,8,15),(73,-19,8,9,12),(78,5,9,9,9),(-60,10,9,12,8),(-32,35,8,10,6),(-5,56,10,7,6)]:outer_rock(x,z,rx,rz,h)
+for x,z,rx,rz,h in [(-58,-27,9,8,12),(-38,-45,9,8,11),(-17,-55,9,8,14),(0,-60,10,8,17),(19,-55,9,10,11),(45,-37,9,8,15),(73,-19,8,9,12),(78,5,9,9,9),(-60,10,9,12,8),(-32,35,8,10,6),(-5,56,10,7,6)]:
+    if any(x+rx>a and x-rx<b and z+rz>c and z-rz<d for a,b,c,d in rects):continue
+    outer_rock(x,z,rx,rz,h)
 # A few remote built structures are scenery only, deliberately beyond walkable boundaries.
 for x,z,w,d,h in [(-10,-48.5,7,4.2,7),(.8,-49,8,5,9),(11,-48.7,6,4.5,8),(-49,-7,4,7,6),(-49,6,4,6,7),(65,-9,4,7,8),(66,3,4,6,6)]:
+    if any(x+w/2>a and x-w/2<b and z+d/2>c and z-d/2<dd for a,b,c,dd in rects):continue
     box('Outer settlement mass',(x,h*.5,z),(w,h,d),stone3,.11)
     box('Outer settlement roofline',(x,h,z),(w+.3,.24,d+.3),stone2,.045)
     dome(x,h+.05,z,min(w,d)*.42,min(w,d)*.28,stone3,16,5)

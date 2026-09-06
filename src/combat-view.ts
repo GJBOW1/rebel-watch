@@ -55,8 +55,11 @@ export class CombatView {
   private readonly muzzlePosition = new THREE.Vector3();
   private effectSequence = 0;
   private recoil = 0;
+  private readonly originalBlaster: THREE.Group;
+  private readonly weaponModels = new Map<string,THREE.Group>();
 
-  constructor(private readonly scene: THREE.Scene, private readonly hunter: THREE.Group, private readonly blaster: THREE.Group, trooper?:THREE.Group) {
+  constructor(private readonly scene: THREE.Scene, private readonly hunter: THREE.Group, private blaster: THREE.Group, trooper?:THREE.Group) {
+    this.originalBlaster = blaster;
     // Clone before attaching the player's gun: otherwise each raider inherits
     // that exact object as well as its own weapon, doubling guns and materials.
     this.enemyTemplate = (trooper??hunter).clone(true);
@@ -93,6 +96,24 @@ export class CombatView {
     this.sparkMesh.frustumCulled = false;
     this.sparkMesh.count = 0;
     scene.add(this.sparkMesh);
+  }
+
+  /** Swap authored weapons while retaining the original arm and physical muzzle. */
+  setWeaponModel(template:THREE.Group|undefined,color:THREE.ColorRepresentation):void {
+    let selected=this.originalBlaster;
+    if(template){
+      let view=this.weaponModels.get(template.uuid);
+      if(!view){
+        view=template.clone(true);
+        const bounds=new THREE.Box3().setFromObject(view);
+        view.userData.weaponMuzzle=new THREE.Vector3(0,.11,bounds.max.z+.02);
+        view.position.copy(GRIP);view.rotation.set(Math.PI/2,0,0);view.visible=false;
+        this.playerArm!.add(view);this.weaponModels.set(template.uuid,view);
+      }
+      selected=view;
+    }
+    if(this.blaster!==selected){this.blaster.visible=false;this.blaster=selected;this.blaster.add(this.playerMuzzle);this.playerMuzzle.position.copy(this.blaster.userData.weaponMuzzle??LOCAL_MUZZLE);}
+    for(const mesh of [this.playerBolts,this.playerHalos]) (mesh.material as THREE.MeshBasicMaterial).color.set(color).multiplyScalar(2.3);
   }
 
   /** Cloned material objects keep every player's armor/optic material unchanged. */

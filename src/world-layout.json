@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "districts": [
     {
       "id": "courtyard",
@@ -105,6 +105,51 @@
         "z": 0
       },
       "note": "Past the ridge, the old sentries still face the long dark."
+    },
+    {
+      "id": "refuge",
+      "name": "The Hidden Refuge",
+      "bounds": {
+        "minX": -20,
+        "maxX": 20,
+        "minZ": -86,
+        "maxZ": -47
+      },
+      "center": {
+        "x": 0,
+        "z": -61
+      },
+      "note": "The small are not the weak. Here, every watch is kept for them."
+    },
+    {
+      "id": "drydock",
+      "name": "Kestrel Drydock",
+      "bounds": {
+        "minX": -88,
+        "maxX": -48,
+        "minZ": -20,
+        "maxZ": 20
+      },
+      "center": {
+        "x": -61,
+        "z": 7
+      },
+      "note": "Rebuild the wings. The sky belongs to those who return."
+    },
+    {
+      "id": "bastion",
+      "name": "Obsidian Bastion",
+      "bounds": {
+        "minX": 33.5,
+        "maxX": 75.5,
+        "minZ": 18.5,
+        "maxZ": 50
+      },
+      "center": {
+        "x": 54,
+        "z": 26
+      },
+      "note": "Their walls were built to end the road. We brought a door."
     }
   ],
   "connections": [
@@ -143,6 +188,33 @@
       "maxX": 34.2,
       "minZ": -2.8,
       "maxZ": 2.8
+    },
+    {
+      "id": "refuge_link",
+      "from": "market",
+      "to": "refuge",
+      "minX": -3,
+      "maxX": 3,
+      "minZ": -48,
+      "maxZ": -42
+    },
+    {
+      "id": "drydock_link",
+      "from": "salvage",
+      "to": "drydock",
+      "minX": -49,
+      "maxX": -43,
+      "minZ": -3,
+      "maxZ": 3
+    },
+    {
+      "id": "bastion_link",
+      "from": "watch",
+      "to": "bastion",
+      "minX": 44,
+      "maxX": 50,
+      "minZ": 13.5,
+      "maxZ": 20
     }
   ],
   "landmarks": [

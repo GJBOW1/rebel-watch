@@ -1,0 +1,1220 @@
+{
+  "districts": [
+    {
+      "id": "courtyard",
+      "name": "The Ninth Courtyard",
+      "bounds": {
+        "minX": -13.4,
+        "maxX": 13.4,
+        "minZ": -11.4,
+        "maxZ": 11.4
+      },
+      "center": {
+        "x": 0,
+        "z": 0
+      },
+      "note": "Rain keeps no banners. Keep your small light close."
+    },
+    {
+      "id": "passage",
+      "name": "The Sundered Line",
+      "bounds": {
+        "minX": 13,
+        "maxX": 25.5,
+        "minZ": -2.6,
+        "maxZ": 2.6
+      },
+      "center": {
+        "x": 19,
+        "z": 0
+      },
+      "note": "A narrow road is still a road. Let no small light fall behind."
+    },
+    {
+      "id": "ridge",
+      "name": "Emberwatch Ridge",
+      "bounds": {
+        "minX": 25,
+        "maxX": 29.5,
+        "minZ": -5.5,
+        "maxZ": 5.5
+      },
+      "center": {
+        "x": 27,
+        "z": 0
+      },
+      "note": "Hold until the last warm light. Some promises need only presence."
+    },
+    {
+      "id": "market",
+      "name": "Lantern Exchange",
+      "bounds": {
+        "minX": -14.6,
+        "maxX": 14.6,
+        "minZ": -43.6,
+        "maxZ": -15.4
+      },
+      "center": {
+        "x": 0,
+        "z": -28
+      },
+      "note": "Trade your iron. Keep your word. The market remembers both."
+    },
+    {
+      "id": "salvage",
+      "name": "The Iron Wadi",
+      "bounds": {
+        "minX": -44.6,
+        "maxX": -16.4,
+        "minZ": -14.6,
+        "maxZ": 14.6
+      },
+      "center": {
+        "x": -29,
+        "z": 0
+      },
+      "note": "Nothing here is useless. Some things are only waiting for a second oath."
+    },
+    {
+      "id": "landing",
+      "name": "Cinder Landing",
+      "bounds": {
+        "minX": -14.6,
+        "maxX": 14.6,
+        "minZ": 15.4,
+        "maxZ": 43.6
+      },
+      "center": {
+        "x": 0,
+        "z": 21
+      },
+      "note": "Every ship carries a leaving. Every lantern offers a return."
+    },
+    {
+      "id": "watch",
+      "name": "The Far Watch",
+      "bounds": {
+        "minX": 33.5,
+        "maxX": 61.7,
+        "minZ": -14.6,
+        "maxZ": 14.6
+      },
+      "center": {
+        "x": 46,
+        "z": 0
+      },
+      "note": "Past the ridge, the old sentries still face the long dark."
+    }
+  ],
+  "connections": [
+    {
+      "id": "north_link",
+      "from": "courtyard",
+      "to": "market",
+      "minX": -2.8,
+      "maxX": 2.8,
+      "minZ": -16.2,
+      "maxZ": -10.5
+    },
+    {
+      "id": "west_link",
+      "from": "courtyard",
+      "to": "salvage",
+      "minX": -17.2,
+      "maxX": -12.5,
+      "minZ": -2.8,
+      "maxZ": 2.8
+    },
+    {
+      "id": "south_link",
+      "from": "courtyard",
+      "to": "landing",
+      "minX": -2.8,
+      "maxX": 2.8,
+      "minZ": 10.5,
+      "maxZ": 16.2
+    },
+    {
+      "id": "east_link",
+      "from": "ridge",
+      "to": "watch",
+      "minX": 28.5,
+      "maxX": 34.2,
+      "minZ": -2.8,
+      "maxZ": 2.8
+    }
+  ],
+  "obstacles": [
+    {
+      "id": "back_wall_-8.6",
+      "x": -8.6,
+      "z": -12.05,
+      "hx": 5.4,
+      "hz": 0.57
+    },
+    {
+      "id": "back_wall_8.6",
+      "x": 8.6,
+      "z": -12.05,
+      "hx": 5.4,
+      "hz": 0.57
+    },
+    {
+      "id": "west_wall",
+      "x": -14.05,
+      "z": -7.7,
+      "hx": 0.57,
+      "hz": 4.4
+    },
+    {
+      "id": "west_gate_lower",
+      "x": -14.05,
+      "z": 4.15,
+      "hx": 0.57,
+      "hz": 0.8
+    },
+    {
+      "id": "west_low_wall",
+      "x": -14,
+      "z": 9.8,
+      "hx": 0.48,
+      "hz": 2.3
+    },
+    {
+      "id": "near_wall_west",
+      "x": -8.5,
+      "z": 12,
+      "hx": 5.4,
+      "hz": 0.36
+    },
+    {
+      "id": "near_wall_east",
+      "x": 8.55,
+      "z": 12,
+      "hx": 5.4,
+      "hz": 0.36
+    },
+    {
+      "id": "east_back_wall",
+      "x": 14,
+      "z": -7.45,
+      "hx": 0.45,
+      "hz": 4.55
+    },
+    {
+      "id": "east_front_wall",
+      "x": 14,
+      "z": 7.65,
+      "hx": 0.45,
+      "hz": 4.4
+    },
+    {
+      "id": "gate_pier_-2.8",
+      "x": 14.1,
+      "z": -2.8,
+      "hx": 0.62,
+      "hz": 0.52
+    },
+    {
+      "id": "gate_pier_2.8",
+      "x": 14.1,
+      "z": 2.8,
+      "hx": 0.62,
+      "hz": 0.52
+    },
+    {
+      "id": "alley_north",
+      "x": 19.5,
+      "z": -3.17,
+      "hx": 5.1,
+      "hz": 0.27
+    },
+    {
+      "id": "alley_south",
+      "x": 19.5,
+      "z": 3.17,
+      "hx": 5.1,
+      "hz": 0.27
+    },
+    {
+      "id": "ridge_side_-6.1",
+      "x": 27.8,
+      "z": -6.1,
+      "hx": 3.1,
+      "hz": 0.22
+    },
+    {
+      "id": "ridge_side_6.1",
+      "x": 27.8,
+      "z": 6.1,
+      "hx": 3.1,
+      "hz": 0.22
+    },
+    {
+      "id": "ridge_far_-4.75",
+      "x": 30.7,
+      "z": -4.75,
+      "hx": 0.23,
+      "hz": 1.4
+    },
+    {
+      "id": "ridge_far_4.75",
+      "x": 30.7,
+      "z": 4.75,
+      "hx": 0.23,
+      "hz": 1.4
+    },
+    {
+      "id": "back_market",
+      "x": 5.8,
+      "z": -9.85,
+      "hx": 2.95,
+      "hz": 0.76
+    },
+    {
+      "id": "west_market",
+      "x": -11.45,
+      "z": 5.85,
+      "hx": 1.65,
+      "hz": 0.8
+    },
+    {
+      "id": "east_cargo",
+      "x": 11.4,
+      "z": -8.6,
+      "hx": 1.26,
+      "hz": 0.7
+    },
+    {
+      "id": "west_cargo",
+      "x": -10.8,
+      "z": -9.7,
+      "hx": 0.57,
+      "hz": 0.5
+    },
+    {
+      "id": "foreground_cargo",
+      "x": 11.3,
+      "z": 10.25,
+      "hx": 1.21,
+      "hz": 0.62
+    },
+    {
+      "id": "near_left_cargo",
+      "x": -11.8,
+      "z": 10.1,
+      "hx": 0.65,
+      "hz": 0.65
+    },
+    {
+      "id": "west_drums",
+      "x": -12,
+      "z": -6.8,
+      "hx": 0.5,
+      "hz": 1.0
+    },
+    {
+      "id": "east_drums",
+      "x": 12.2,
+      "z": 6.95,
+      "hx": 0.51,
+      "hz": 0.94
+    },
+    {
+      "id": "cistern",
+      "x": 0,
+      "z": -1,
+      "hx": 2.34,
+      "hz": 2.34
+    },
+    {
+      "id": "relay_console",
+      "x": 22,
+      "z": 0,
+      "hx": 0.46,
+      "hz": 0.34
+    },
+    {
+      "id": "ridge_beacon",
+      "x": 28.6,
+      "z": -4.6,
+      "hx": 0.6,
+      "hz": 0.6
+    },
+    {
+      "id": "interior_freight_-7",
+      "x": -6.96,
+      "z": 3.1,
+      "hx": 1.28,
+      "hz": 0.74
+    },
+    {
+      "id": "interior_freight_7",
+      "x": 7.04,
+      "z": 6.1,
+      "hx": 1.28,
+      "hz": 0.74
+    },
+    {
+      "id": "market_boundary_north0",
+      "x": 0.0,
+      "z": -44.300000000000004,
+      "hx": 15.1,
+      "hz": 0.4
+    },
+    {
+      "id": "market_boundary_south0",
+      "x": -9.149999999999999,
+      "z": -14.700000000000001,
+      "hx": 5.949999999999999,
+      "hz": 0.4
+    },
+    {
+      "id": "market_boundary_south1",
+      "x": 9.149999999999999,
+      "z": -14.700000000000001,
+      "hx": 5.949999999999999,
+      "hz": 0.4
+    },
+    {
+      "id": "market_boundary_west0",
+      "x": -15.299999999999999,
+      "z": -29.500000000000004,
+      "hx": 0.4,
+      "hz": 14.600000000000001
+    },
+    {
+      "id": "market_boundary_east0",
+      "x": 15.299999999999999,
+      "z": -29.500000000000004,
+      "hx": 0.4,
+      "hz": 14.600000000000001
+    },
+    {
+      "id": "interior_cantina_wall_N_-12.3",
+      "x": -8.5,
+      "z": -42.7,
+      "hx": 3.8000000000000003,
+      "hz": 0.18
+    },
+    {
+      "id": "interior_cantina_wall_S_-12.3",
+      "x": -10.75,
+      "z": -35.5,
+      "hx": 1.5500000000000007,
+      "hz": 0.18
+    },
+    {
+      "id": "interior_cantina_wall_S_-7.0",
+      "x": -5.85,
+      "z": -35.5,
+      "hx": 1.15,
+      "hz": 0.18
+    },
+    {
+      "id": "interior_cantina_wall_W_-42.7",
+      "x": -12.3,
+      "z": -39.1,
+      "hx": 0.18,
+      "hz": 3.6000000000000014
+    },
+    {
+      "id": "interior_cantina_wall_E_-42.7",
+      "x": -4.7,
+      "z": -39.1,
+      "hx": 0.18,
+      "hz": 3.6000000000000014
+    },
+    {
+      "id": "interior_cantina_bar_front",
+      "x": -8.5,
+      "z": -41.28,
+      "hx": 2.705,
+      "hz": 0.36000000000000004
+    },
+    {
+      "id": "interior_cantina_bar_left",
+      "x": -10.88,
+      "z": -42.05,
+      "hx": 0.33,
+      "hz": 0.53
+    },
+    {
+      "id": "interior_cantina_bar_right",
+      "x": -6.12,
+      "z": -42.05,
+      "hx": 0.33,
+      "hz": 0.53
+    },
+    {
+      "id": "interior_cantina_backbar",
+      "x": -8.5,
+      "z": -42.15,
+      "hx": 2.68,
+      "hz": 0.4
+    },
+    {
+      "id": "interior_cantina_booth_-11.31_-38.6",
+      "x": -11.31,
+      "z": -38.6,
+      "hx": 0.62,
+      "hz": 1.25
+    },
+    {
+      "id": "interior_cantina_booth_-5.68_-38.6",
+      "x": -5.68,
+      "z": -38.6,
+      "hx": 0.62,
+      "hz": 1.25
+    },
+    {
+      "id": "interior_cantina_side_table_-10.25",
+      "x": -10.25,
+      "z": -38.3,
+      "hx": 0.49,
+      "hz": 0.49
+    },
+    {
+      "id": "interior_cantina_side_table_-6.75",
+      "x": -6.75,
+      "z": -38.3,
+      "hx": 0.49,
+      "hz": 0.49
+    },
+    {
+      "id": "market_north_habitat",
+      "x": 6.5,
+      "z": -39.7,
+      "hx": 5.08,
+      "hz": 2.23
+    },
+    {
+      "id": "market_west_vendor",
+      "x": -11,
+      "z": -22,
+      "hx": 1.9300000000000002,
+      "hz": 2.83
+    },
+    {
+      "id": "market_east_vendor",
+      "x": 11.1,
+      "z": -21.8,
+      "hx": 1.83,
+      "hz": 2.98
+    },
+    {
+      "id": "cantina_awning_post_l",
+      "x": -11.15,
+      "z": -33.8,
+      "hx": 0.1,
+      "hz": 0.1
+    },
+    {
+      "id": "cantina_awning_post_r",
+      "x": -5.65,
+      "z": -33.8,
+      "hx": 0.1,
+      "hz": 0.1
+    },
+    {
+      "id": "market_spice_stall",
+      "x": -4.9,
+      "z": -27.05,
+      "hx": 2.21,
+      "hz": 1.23
+    },
+    {
+      "id": "market_mechanic_stall",
+      "x": 4,
+      "z": -32.75,
+      "hx": 2.46,
+      "hz": 1.23
+    },
+    {
+      "id": "oathboard",
+      "x": 9.25,
+      "z": -28,
+      "hx": 0.45,
+      "hz": 0.78
+    },
+    {
+      "id": "market_spare_parts",
+      "x": -9.8,
+      "z": -18.0,
+      "hx": 1.3860000000000001,
+      "hz": 0.8819999999999999
+    },
+    {
+      "id": "holo_2_-24.4",
+      "x": 2,
+      "z": -24.4,
+      "hx": 0.41800000000000004,
+      "hz": 0.41800000000000004
+    },
+    {
+      "id": "lamp_-10.8_-31.1",
+      "x": -10.8,
+      "z": -31.1,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_11.1_-32.3",
+      "x": 11.1,
+      "z": -32.3,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_-6.1_-18.4",
+      "x": -6.1,
+      "z": -18.4,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_5.7_-18.4",
+      "x": 5.7,
+      "z": -18.4,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_1.5_-40.5",
+      "x": 1.5,
+      "z": -40.5,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "market_edge_drum_-12.6_-38",
+      "x": -12.6,
+      "z": -38,
+      "hx": 0.46,
+      "hz": 0.46
+    },
+    {
+      "id": "market_edge_drum_12.6_-38",
+      "x": 12.6,
+      "z": -38,
+      "hx": 0.46,
+      "hz": 0.46
+    },
+    {
+      "id": "market_edge_drum_-12.6_-32",
+      "x": -12.6,
+      "z": -32,
+      "hx": 0.46,
+      "hz": 0.46
+    },
+    {
+      "id": "market_edge_drum_12.6_-32",
+      "x": 12.6,
+      "z": -32,
+      "hx": 0.46,
+      "hz": 0.46
+    },
+    {
+      "id": "market_edge_drum_-12.6_-26",
+      "x": -12.6,
+      "z": -26,
+      "hx": 0.46,
+      "hz": 0.46
+    },
+    {
+      "id": "market_edge_drum_12.6_-26",
+      "x": 12.6,
+      "z": -26,
+      "hx": 0.46,
+      "hz": 0.46
+    },
+    {
+      "id": "market_edge_drum_-12.6_-20",
+      "x": -12.6,
+      "z": -20,
+      "hx": 0.46,
+      "hz": 0.46
+    },
+    {
+      "id": "market_edge_drum_12.6_-20",
+      "x": 12.6,
+      "z": -20,
+      "hx": 0.46,
+      "hz": 0.46
+    },
+    {
+      "id": "salvage_boundary_north0",
+      "x": -30.5,
+      "z": -15.299999999999999,
+      "hx": 14.600000000000003,
+      "hz": 0.4
+    },
+    {
+      "id": "salvage_boundary_south0",
+      "x": -30.5,
+      "z": 15.299999999999999,
+      "hx": 14.600000000000003,
+      "hz": 0.4
+    },
+    {
+      "id": "salvage_boundary_west0",
+      "x": -45.300000000000004,
+      "z": 0.0,
+      "hx": 0.4,
+      "hz": 15.1
+    },
+    {
+      "id": "salvage_boundary_east0",
+      "x": -15.7,
+      "z": -9.149999999999999,
+      "hx": 0.4,
+      "hz": 5.949999999999999
+    },
+    {
+      "id": "salvage_boundary_east1",
+      "x": -15.7,
+      "z": 9.149999999999999,
+      "hx": 0.4,
+      "hz": 5.949999999999999
+    },
+    {
+      "id": "interior_workshop_wall_N_-43.1",
+      "x": -39.3,
+      "z": -13.4,
+      "hx": 3.8000000000000007,
+      "hz": 0.18
+    },
+    {
+      "id": "interior_workshop_wall_S_-43.1",
+      "x": -42.3,
+      "z": -7.4,
+      "hx": 0.8000000000000007,
+      "hz": 0.18
+    },
+    {
+      "id": "interior_workshop_wall_S_-39.3",
+      "x": -37.4,
+      "z": -7.4,
+      "hx": 1.8999999999999986,
+      "hz": 0.18
+    },
+    {
+      "id": "interior_workshop_wall_W_-13.4",
+      "x": -43.1,
+      "z": -10.4,
+      "hx": 0.18,
+      "hz": 3.0
+    },
+    {
+      "id": "interior_workshop_wall_E_-13.4",
+      "x": -35.5,
+      "z": -10.4,
+      "hx": 0.18,
+      "hz": 3.0
+    },
+    {
+      "id": "interior_workshop_repair_bench",
+      "x": -36.85,
+      "z": -10.9,
+      "hx": 0.92,
+      "hz": 1.7
+    },
+    {
+      "id": "interior_workshop_power_coils",
+      "x": -42.3,
+      "z": -12.2,
+      "hx": 0.5,
+      "hz": 0.57
+    },
+    {
+      "id": "interior_workshop_spare_chassis",
+      "x": -36.65,
+      "z": -12.55,
+      "hx": 0.83,
+      "hz": 0.46
+    },
+    {
+      "id": "wadi_tool_shed",
+      "x": -40.4,
+      "z": 9.9,
+      "hx": 2.23,
+      "hz": 2.83
+    },
+    {
+      "id": "fallen_drive",
+      "x": -35,
+      "z": -4.9,
+      "hx": 2.35,
+      "hz": 1.26
+    },
+    {
+      "id": "gantry_foot_-38.2",
+      "x": -38.2,
+      "z": -6.8,
+      "hx": 0.57,
+      "hz": 0.57
+    },
+    {
+      "id": "gantry_foot_-31.2",
+      "x": -31.2,
+      "z": -6.8,
+      "hx": 0.57,
+      "hz": 0.57
+    },
+    {
+      "id": "patient_caravan",
+      "x": -27.1,
+      "z": 10.65,
+      "hx": 3.85,
+      "hz": 1.89
+    },
+    {
+      "id": "wadi_spare_cargo",
+      "x": -23.2,
+      "z": -6.0,
+      "hx": 1.7639999999999998,
+      "hz": 1.26
+    },
+    {
+      "id": "wadi_scrap_cage",
+      "x": -19.4,
+      "z": 7.9,
+      "hx": 1.6380000000000001,
+      "hz": 1.008
+    },
+    {
+      "id": "wadi_drum_-39_-0.6",
+      "x": -39,
+      "z": -0.6,
+      "hx": 0.46,
+      "hz": 0.46
+    },
+    {
+      "id": "wadi_drum_-40_1.6",
+      "x": -40,
+      "z": 1.6,
+      "hx": 0.46,
+      "hz": 0.46
+    },
+    {
+      "id": "wadi_drum_-35_8.6",
+      "x": -35,
+      "z": 8.6,
+      "hx": 0.46,
+      "hz": 0.46
+    },
+    {
+      "id": "wadi_drum_-22_-10.7",
+      "x": -22,
+      "z": -10.7,
+      "hx": 0.46,
+      "hz": 0.46
+    },
+    {
+      "id": "wadi_workbench",
+      "x": -40.1,
+      "z": 4.7,
+      "hx": 1.65,
+      "hz": 0.78
+    },
+    {
+      "id": "lamp_-41.5_-5.7",
+      "x": -41.5,
+      "z": -5.7,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_-31.8_2.8",
+      "x": -31.8,
+      "z": 2.8,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_-20_-11.1",
+      "x": -20,
+      "z": -11.1,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_-19.0_2.0",
+      "x": -19.0,
+      "z": 2.0,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_-35_11.6",
+      "x": -35,
+      "z": 11.6,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "landing_boundary_north0",
+      "x": -9.149999999999999,
+      "z": 14.700000000000001,
+      "hx": 5.949999999999999,
+      "hz": 0.4
+    },
+    {
+      "id": "landing_boundary_north1",
+      "x": 9.149999999999999,
+      "z": 14.700000000000001,
+      "hx": 5.949999999999999,
+      "hz": 0.4
+    },
+    {
+      "id": "landing_boundary_south0",
+      "x": 0.0,
+      "z": 44.300000000000004,
+      "hx": 15.1,
+      "hz": 0.4
+    },
+    {
+      "id": "landing_boundary_west0",
+      "x": -15.299999999999999,
+      "z": 29.500000000000004,
+      "hx": 0.4,
+      "hz": 14.600000000000001
+    },
+    {
+      "id": "landing_boundary_east0",
+      "x": 15.299999999999999,
+      "z": 29.500000000000004,
+      "hx": 0.4,
+      "hz": 14.600000000000001
+    },
+    {
+      "id": "wayward_bell_hull",
+      "x": -1,
+      "z": 29.7,
+      "hx": 2.65,
+      "hz": 5.12
+    },
+    {
+      "id": "bell_port_drive",
+      "x": -4.55,
+      "z": 30.7,
+      "hx": 0.89,
+      "hz": 2.89
+    },
+    {
+      "id": "bell_starboard_drive",
+      "x": 3.62,
+      "z": 31.6,
+      "hx": 0.74,
+      "hz": 2.54
+    },
+    {
+      "id": "bell_boarding_ramp",
+      "x": 3.6,
+      "z": 28,
+      "hx": 1.65,
+      "hz": 1.08
+    },
+    {
+      "id": "landing_customs",
+      "x": -10.2,
+      "z": 19.7,
+      "hx": 2.43,
+      "hz": 2.7800000000000002
+    },
+    {
+      "id": "landing_control",
+      "x": 10.2,
+      "z": 38.6,
+      "hx": 2.48,
+      "hz": 2.88
+    },
+    {
+      "id": "landing_fuel_cases",
+      "x": 10.2,
+      "z": 22,
+      "hx": 1.7639999999999998,
+      "hz": 1.1340000000000001
+    },
+    {
+      "id": "landing_luggage",
+      "x": -10.2,
+      "z": 39.5,
+      "hx": 1.3860000000000001,
+      "hz": 1.1340000000000001
+    },
+    {
+      "id": "dock_fuel_-10.9_30.8",
+      "x": -10.9,
+      "z": 30.8,
+      "hx": 0.46,
+      "hz": 0.46
+    },
+    {
+      "id": "dock_fuel_-10.9_32.0",
+      "x": -10.9,
+      "z": 32.0,
+      "hx": 0.46,
+      "hz": 0.46
+    },
+    {
+      "id": "dock_fuel_10.8_33.3",
+      "x": 10.8,
+      "z": 33.3,
+      "hx": 0.46,
+      "hz": 0.46
+    },
+    {
+      "id": "lamp_-8.2_23.5",
+      "x": -8.2,
+      "z": 23.5,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_8.7_18.4",
+      "x": 8.7,
+      "z": 18.4,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_11.3_28",
+      "x": 11.3,
+      "z": 28,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_-7.6_37.7",
+      "x": -7.6,
+      "z": 37.7,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_4.3_40",
+      "x": 4.3,
+      "z": 40,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "watch_boundary_north0",
+      "x": 47.6,
+      "z": -15.299999999999999,
+      "hx": 14.600000000000005,
+      "hz": 0.4
+    },
+    {
+      "id": "watch_boundary_south0",
+      "x": 47.6,
+      "z": 15.299999999999999,
+      "hx": 14.600000000000005,
+      "hz": 0.4
+    },
+    {
+      "id": "watch_boundary_west0",
+      "x": 32.8,
+      "z": -9.149999999999999,
+      "hx": 0.4,
+      "hz": 5.949999999999999
+    },
+    {
+      "id": "watch_boundary_west1",
+      "x": 32.8,
+      "z": 9.149999999999999,
+      "hx": 0.4,
+      "hz": 5.949999999999999
+    },
+    {
+      "id": "watch_boundary_east0",
+      "x": 62.400000000000006,
+      "z": 0.0,
+      "hx": 0.4,
+      "hz": 15.1
+    },
+    {
+      "id": "watch_warden_hall",
+      "x": 43.8,
+      "z": -10.7,
+      "hx": 5.23,
+      "hz": 2.33
+    },
+    {
+      "id": "watch_east_keep",
+      "x": 58.1,
+      "z": -7.9,
+      "hx": 2.03,
+      "hz": 4.53
+    },
+    {
+      "id": "watchtower",
+      "x": 54.8,
+      "z": -9.7,
+      "hx": 2.37,
+      "hz": 2.37
+    },
+    {
+      "id": "watch_beacon",
+      "x": 47,
+      "z": -8.2,
+      "hx": 1.17,
+      "hz": 1.17
+    },
+    {
+      "id": "interior_archive_wall_N_48.8",
+      "x": 50.849999999999994,
+      "z": 7.6,
+      "hx": 2.0500000000000007,
+      "hz": 0.18
+    },
+    {
+      "id": "interior_archive_wall_N_55.1",
+      "x": 56.95,
+      "z": 7.6,
+      "hx": 1.8499999999999979,
+      "hz": 0.18
+    },
+    {
+      "id": "interior_archive_wall_S_48.8",
+      "x": 53.8,
+      "z": 13.4,
+      "hx": 5.0,
+      "hz": 0.18
+    },
+    {
+      "id": "interior_archive_wall_W_7.6",
+      "x": 48.8,
+      "z": 10.5,
+      "hx": 0.18,
+      "hz": 2.9000000000000004
+    },
+    {
+      "id": "interior_archive_wall_E_7.6",
+      "x": 58.8,
+      "z": 10.5,
+      "hx": 0.18,
+      "hz": 2.9000000000000004
+    },
+    {
+      "id": "interior_archive_star_ledger",
+      "x": 55.8,
+      "z": 11.0,
+      "hx": 0.96,
+      "hz": 0.88
+    },
+    {
+      "id": "interior_archive_relic_9.4",
+      "x": 49.7,
+      "z": 9.4,
+      "hx": 0.63,
+      "hz": 0.55
+    },
+    {
+      "id": "interior_archive_relic_11.8",
+      "x": 49.7,
+      "z": 11.8,
+      "hx": 0.63,
+      "hz": 0.55
+    },
+    {
+      "id": "interior_archive_data_stack_51.45",
+      "x": 51.45,
+      "z": 12.89,
+      "hx": 0.88,
+      "hz": 0.36
+    },
+    {
+      "id": "interior_archive_data_stack_53.4",
+      "x": 53.4,
+      "z": 12.89,
+      "hx": 0.88,
+      "hz": 0.36
+    },
+    {
+      "id": "interior_archive_data_stack_55.35",
+      "x": 55.35,
+      "z": 12.89,
+      "hx": 0.88,
+      "hz": 0.36
+    },
+    {
+      "id": "interior_archive_data_stack_57.45",
+      "x": 57.45,
+      "z": 12.89,
+      "hx": 0.88,
+      "hz": 0.36
+    },
+    {
+      "id": "sentry_statue_37.8",
+      "x": 37.8,
+      "z": -7.9,
+      "hx": 0.81,
+      "hz": 0.81
+    },
+    {
+      "id": "sentry_statue_38.5",
+      "x": 38.5,
+      "z": 8.7,
+      "hx": 0.81,
+      "hz": 0.81
+    },
+    {
+      "id": "watch_relay_cases",
+      "x": 59,
+      "z": 3.0,
+      "hx": 1.26,
+      "hz": 0.8819999999999999
+    },
+    {
+      "id": "holo_45.3_5.7",
+      "x": 45.3,
+      "z": 5.7,
+      "hx": 0.4675,
+      "hz": 0.4675
+    },
+    {
+      "id": "lamp_35.5_4.2",
+      "x": 35.5,
+      "z": 4.2,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_42.2_-4.1",
+      "x": 42.2,
+      "z": -4.1,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_50.4_2.1",
+      "x": 50.4,
+      "z": 2.1,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_57.7_6.7",
+      "x": 57.7,
+      "z": 6.7,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_44.2_10.8",
+      "x": 44.2,
+      "z": 10.8,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "morrow_condenser",
+      "x": 8,
+      "z": -7,
+      "hx": 0.64,
+      "hz": 0.65
+    }
+  ]
+}

@@ -53,9 +53,15 @@ BATCH={};GROUP='World_courtyard'
 LAYOUT=json.loads((ROOT/'src/world-layout.json').read_text())
 PORTALS=[(-3.05,3.05,-16.3,-10.55),(-17.3,-12.55,-3.05,3.05),(-3.05,3.05,10.55,16.3),(28.9,34.3,-3.05,3.05)]
 FILTER_ORIGINAL_PORTALS=True
+CAMPAIGN_PORTALS=[(-3.25,3.25,-47.5,-42.85),(-48.5,-43.75,-3.25,3.25),(43.75,50.25,14.05,19.25)]
 def emit(vs,fs,material,uvscale=.8):
     if material=='Salvaged ceramic alloy panels':uvscale=.10
     if material=='Interior inset service panels':uvscale=.30
+    # Open exactly the three new passages in existing perimeter geometry. Filtering emitted
+    # primitives preserves the original district random sequence and all unrelated assets.
+    if not FILTER_ORIGINAL_PORTALS and GROUP in ['World_market','World_salvage','World_watch'] and max(p[1] for p in vs)>.08 and min(p[1] for p in vs)<5.4:
+        bounds=(min(p[0] for p in vs),max(p[0] for p in vs),min(p[2] for p in vs),max(p[2] for p in vs))
+        if any(bounds[0]<b and bounds[1]>a and bounds[2]<d and bounds[3]>c for a,b,c,d in CAMPAIGN_PORTALS):return
     if FILTER_ORIGINAL_PORTALS and GROUP.startswith('World') and max(p[1] for p in vs)>.08 and min(p[1] for p in vs)<3.55:
         bounds=(min(p[0] for p in vs),max(p[0] for p in vs),min(p[2] for p in vs),max(p[2] for p in vs))
         if any(bounds[0]<b and bounds[1]>a and bounds[2]<d and bounds[3]>c for a,b,c,d in PORTALS):return
@@ -530,6 +536,7 @@ for x,z,w,d in [(-3.4,7.8,.64,.38),(9.4,-3.2,.57,.35)]:
 # District geometry shares primitives and original materials; the helper remains editable.
 FILTER_ORIGINAL_PORTALS=False
 exec(compile((ROOT/'tools/build_city.py').read_text(),str(ROOT/'tools/build_city.py'),'exec'))
+exec(compile((ROOT/'tools/build_campaign_world.py').read_text(),str(ROOT/'tools/build_campaign_world.py'),'exec'))
 # ASSET characters. Components remain separately named for runtime animation.
 GROUP='Hunter_Body'
 # boots and legs extend to y=1; original asymmetrical armor / diagonal optics.

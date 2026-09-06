@@ -1,10 +1,10 @@
 {
   "coordinateSystem": "glTF Y-up; north -Z",
   "worldBounds": {
-    "minX": -45.2,
-    "maxX": 62.300000000000004,
-    "minZ": -44.2,
-    "maxZ": 44.2
+    "minX": -88.6,
+    "maxX": 76.1,
+    "minZ": -86.6,
+    "maxZ": 50.6
   },
   "obstacles": [
     {
@@ -216,13 +216,6 @@
       "z": 6.1,
       "hx": 1.28,
       "hz": 0.74
-    },
-    {
-      "id": "market_boundary_north0",
-      "x": 0.0,
-      "z": -44.300000000000004,
-      "hx": 15.1,
-      "hz": 0.4
     },
     {
       "id": "market_boundary_south0",
@@ -517,13 +510,6 @@
       "z": 15.299999999999999,
       "hx": 14.600000000000003,
       "hz": 0.4
-    },
-    {
-      "id": "salvage_boundary_west0",
-      "x": -45.300000000000004,
-      "z": 0.0,
-      "hx": 0.4,
-      "hz": 15.1
     },
     {
       "id": "salvage_boundary_east0",
@@ -869,13 +855,6 @@
       "hz": 0.4
     },
     {
-      "id": "watch_boundary_south0",
-      "x": 47.6,
-      "z": 15.299999999999999,
-      "hx": 14.600000000000005,
-      "hz": 0.4
-    },
-    {
       "id": "watch_boundary_west0",
       "x": 32.8,
       "z": -9.149999999999999,
@@ -1070,6 +1049,741 @@
       "z": 10.8,
       "hx": 0.2,
       "hz": 0.2
+    },
+    {
+      "id": "market_boundary_north0_campaign_0",
+      "x": -9.15,
+      "z": -44.3,
+      "hx": 5.9,
+      "hz": 0.4
+    },
+    {
+      "id": "market_boundary_north0_campaign_1",
+      "x": 9.15,
+      "z": -44.3,
+      "hx": 5.9,
+      "hz": 0.4
+    },
+    {
+      "id": "salvage_boundary_west0_campaign_0",
+      "x": -45.3,
+      "z": -9.15,
+      "hx": 0.4,
+      "hz": 5.9
+    },
+    {
+      "id": "salvage_boundary_west0_campaign_1",
+      "x": -45.3,
+      "z": 9.15,
+      "hx": 0.4,
+      "hz": 5.9
+    },
+    {
+      "id": "watch_boundary_south0_campaign_0",
+      "x": 38.3,
+      "z": 15.3,
+      "hx": 5.45,
+      "hz": 0.4
+    },
+    {
+      "id": "watch_boundary_south0_campaign_1",
+      "x": 56.4,
+      "z": 15.3,
+      "hx": 6.15,
+      "hz": 0.4
+    },
+    {
+      "id": "refuge_boundary_north0",
+      "x": 0.0,
+      "z": -86.65,
+      "hx": 20.35,
+      "hz": 0.4
+    },
+    {
+      "id": "refuge_boundary_south0",
+      "x": -11.9,
+      "z": -46.35,
+      "hx": 8.450000000000001,
+      "hz": 0.4
+    },
+    {
+      "id": "refuge_boundary_south1",
+      "x": 11.9,
+      "z": -46.35,
+      "hx": 8.450000000000001,
+      "hz": 0.4
+    },
+    {
+      "id": "refuge_boundary_west0",
+      "x": -20.65,
+      "z": -66.5,
+      "hx": 0.4,
+      "hz": 19.849999999999998
+    },
+    {
+      "id": "refuge_boundary_east0",
+      "x": 20.65,
+      "z": -66.5,
+      "hx": 0.4,
+      "hz": 19.849999999999998
+    },
+    {
+      "id": "refuge_north_house",
+      "x": -12.6,
+      "z": -81.7,
+      "hx": 5.08,
+      "hz": 2.63
+    },
+    {
+      "id": "refuge_north_store",
+      "x": 10.4,
+      "z": -81.9,
+      "hx": 5.68,
+      "hz": 2.58
+    },
+    {
+      "id": "refuge_west_ward",
+      "x": -16.3,
+      "z": -71.8,
+      "hx": 2.68,
+      "hz": 4.68
+    },
+    {
+      "id": "refuge_south_ward",
+      "x": -14.7,
+      "z": -54.3,
+      "hx": 3.68,
+      "hz": 4.18
+    },
+    {
+      "id": "refuge_east_home",
+      "x": 16.4,
+      "z": -68.9,
+      "hx": 2.73,
+      "hz": 4.68
+    },
+    {
+      "id": "refuge_south_bazaar",
+      "x": 17,
+      "z": -48.8,
+      "hx": 2.23,
+      "hz": 1.73
+    },
+    {
+      "id": "refuge_awning_post_-17.0-77.9",
+      "x": -17.0,
+      "z": -77.9,
+      "hx": 0.15,
+      "hz": 0.15
+    },
+    {
+      "id": "refuge_awning_post_-8-77.9",
+      "x": -8,
+      "z": -77.9,
+      "hx": 0.15,
+      "hz": 0.15
+    },
+    {
+      "id": "refuge_awning_post_6-78.7",
+      "x": 6,
+      "z": -78.7,
+      "hx": 0.15,
+      "hz": 0.15
+    },
+    {
+      "id": "refuge_awning_post_14.7-78.7",
+      "x": 14.7,
+      "z": -78.7,
+      "hx": 0.15,
+      "hz": 0.15
+    },
+    {
+      "id": "refuge_awning_post_-18.1-50.9",
+      "x": -18.1,
+      "z": -50.9,
+      "hx": 0.15,
+      "hz": 0.15
+    },
+    {
+      "id": "refuge_awning_post_-11.7-50.9",
+      "x": -11.7,
+      "z": -50.9,
+      "hx": 0.15,
+      "hz": 0.15
+    },
+    {
+      "id": "lamp_-6.9_-70.4",
+      "x": -6.9,
+      "z": -70.4,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_6.8_-70.4",
+      "x": 6.8,
+      "z": -70.4,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_-7.2_-59.0",
+      "x": -7.2,
+      "z": -59.0,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_4.0_-52.7",
+      "x": 4.0,
+      "z": -52.7,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_12.9_-62.2",
+      "x": 12.9,
+      "z": -62.2,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_-7.4_-81.0",
+      "x": -7.4,
+      "z": -81.0,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "refuge_bench_-4.6",
+      "x": -4.6,
+      "z": -64.8,
+      "hx": 0.85,
+      "hz": 0.38
+    },
+    {
+      "id": "refuge_bench_4.7",
+      "x": 4.7,
+      "z": -64.9,
+      "hx": 0.85,
+      "hz": 0.38
+    },
+    {
+      "id": "campaign_signal_-10_-67.6",
+      "x": -10,
+      "z": -67.6,
+      "hx": 0.48,
+      "hz": 0.43
+    },
+    {
+      "id": "campaign_signal_10_-67.6",
+      "x": 10,
+      "z": -67.6,
+      "hx": 0.48,
+      "hz": 0.43
+    },
+    {
+      "id": "campaign_signal_0_-79.6",
+      "x": 0,
+      "z": -79.6,
+      "hx": 0.48,
+      "hz": 0.43
+    },
+    {
+      "id": "refuge_storage_0",
+      "x": -18.2,
+      "z": -61,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "refuge_storage_1",
+      "x": -15.9,
+      "z": -60.7,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "refuge_storage_2",
+      "x": 17.5,
+      "z": -75.4,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "refuge_storage_3",
+      "x": 15.9,
+      "z": -76.0,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "refuge_storage_4",
+      "x": -4.6,
+      "z": -82.9,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "refuge_storage_5",
+      "x": 3.9,
+      "z": -82.9,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "refuge_planter_-17.5-64.7",
+      "x": -17.5,
+      "z": -64.7,
+      "hx": 0.77,
+      "hz": 0.77
+    },
+    {
+      "id": "refuge_planter_17.4-60.5",
+      "x": 17.4,
+      "z": -60.5,
+      "hx": 0.77,
+      "hz": 0.77
+    },
+    {
+      "id": "refuge_planter_-15-77.9",
+      "x": -15,
+      "z": -77.9,
+      "hx": 0.77,
+      "hz": 0.77
+    },
+    {
+      "id": "refuge_planter_13.5-79.6",
+      "x": 13.5,
+      "z": -79.6,
+      "hx": 0.77,
+      "hz": 0.77
+    },
+    {
+      "id": "refuge_brazier_-5.2",
+      "x": -5.2,
+      "z": -73.9,
+      "hx": 0.7,
+      "hz": 0.7
+    },
+    {
+      "id": "refuge_brazier_5.5",
+      "x": 5.5,
+      "z": -74.1,
+      "hx": 0.7,
+      "hz": 0.7
+    },
+    {
+      "id": "drydock_boundary_north0",
+      "x": -68.0,
+      "z": -20.65,
+      "hx": 20.349999999999998,
+      "hz": 0.4
+    },
+    {
+      "id": "drydock_boundary_south0",
+      "x": -68.0,
+      "z": 20.65,
+      "hx": 20.349999999999998,
+      "hz": 0.4
+    },
+    {
+      "id": "drydock_boundary_west0",
+      "x": -88.65,
+      "z": 0.0,
+      "hx": 0.4,
+      "hz": 20.35
+    },
+    {
+      "id": "drydock_boundary_east0",
+      "x": -47.35,
+      "z": -11.9,
+      "hx": 0.4,
+      "hz": 8.450000000000001
+    },
+    {
+      "id": "drydock_boundary_east1",
+      "x": -47.35,
+      "z": 11.9,
+      "hx": 0.4,
+      "hz": 8.450000000000001
+    },
+    {
+      "id": "drydock_north_shop",
+      "x": -73.5,
+      "z": -16.7,
+      "hx": 7.58,
+      "hz": 2.58
+    },
+    {
+      "id": "drydock_west_hangar",
+      "x": -84.8,
+      "z": -8.2,
+      "hx": 2.5300000000000002,
+      "hz": 6.08
+    },
+    {
+      "id": "drydock_south_store",
+      "x": -79.5,
+      "z": 16.3,
+      "hx": 6.38,
+      "hz": 2.83
+    },
+    {
+      "id": "drydock_south_office",
+      "x": -57,
+      "z": 16.1,
+      "hx": 5.08,
+      "hz": 2.73
+    },
+    {
+      "id": "drydock_gantry_-80.7-11.3",
+      "x": -80.7,
+      "z": -11.3,
+      "hx": 0.94,
+      "hz": 0.98
+    },
+    {
+      "id": "drydock_gantry_-80.711.2",
+      "x": -80.7,
+      "z": 11.2,
+      "hx": 0.94,
+      "hz": 0.98
+    },
+    {
+      "id": "drydock_gantry_-73.0-11.3",
+      "x": -73.0,
+      "z": -11.3,
+      "hx": 0.94,
+      "hz": 0.98
+    },
+    {
+      "id": "drydock_gantry_-73.011.2",
+      "x": -73.0,
+      "z": 11.2,
+      "hx": 0.94,
+      "hz": 0.98
+    },
+    {
+      "id": "drydock_mission_case_0",
+      "x": -58,
+      "z": -10,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "drydock_mission_console_0",
+      "x": -57.05,
+      "z": -10,
+      "hx": 0.39,
+      "hz": 0.3
+    },
+    {
+      "id": "drydock_mission_case_1",
+      "x": -70,
+      "z": -10,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "drydock_mission_console_1",
+      "x": -69.05,
+      "z": -10,
+      "hx": 0.39,
+      "hz": 0.3
+    },
+    {
+      "id": "drydock_mission_case_2",
+      "x": -77,
+      "z": 9,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "drydock_mission_console_2",
+      "x": -76.05,
+      "z": 9,
+      "hx": 0.39,
+      "hz": 0.3
+    },
+    {
+      "id": "drydock_rack_-2.0",
+      "x": -73.9,
+      "z": -2.0,
+      "hx": 0.77,
+      "hz": 0.48
+    },
+    {
+      "id": "drydock_rack_2.0",
+      "x": -73.9,
+      "z": 2.0,
+      "hx": 0.77,
+      "hz": 0.48
+    },
+    {
+      "id": "drydock_case_0",
+      "x": -86,
+      "z": 7,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "drydock_case_1",
+      "x": -85,
+      "z": 10,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "drydock_case_2",
+      "x": -82.4,
+      "z": 7.8,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "drydock_case_3",
+      "x": -69,
+      "z": 16.8,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "drydock_case_4",
+      "x": -50.4,
+      "z": -16.3,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "drydock_case_5",
+      "x": -49.9,
+      "z": 11.4,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "drydock_salvage_drive_1.9",
+      "x": -82.7,
+      "z": 1.9,
+      "hx": 0.8,
+      "hz": 1.18
+    },
+    {
+      "id": "drydock_salvage_drive_4.5",
+      "x": -82.7,
+      "z": 4.5,
+      "hx": 0.8,
+      "hz": 1.18
+    },
+    {
+      "id": "lamp_-50.8_-6.7",
+      "x": -50.8,
+      "z": -6.7,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_-69_-4.4",
+      "x": -69,
+      "z": -4.4,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_-70.2_5.9",
+      "x": -70.2,
+      "z": 5.9,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_-60_10.1",
+      "x": -60,
+      "z": 10.1,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_-81.5_12.4",
+      "x": -81.5,
+      "z": 12.4,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "lamp_-78.7_-14.6",
+      "x": -78.7,
+      "z": -14.6,
+      "hx": 0.2,
+      "hz": 0.2
+    },
+    {
+      "id": "bastion_boundary_north0",
+      "x": 38.35,
+      "z": 17.85,
+      "hx": 5.189999999999999,
+      "hz": 0.42
+    },
+    {
+      "id": "bastion_boundary_north1",
+      "x": 63.15,
+      "z": 17.85,
+      "hx": 12.689999999999998,
+      "hz": 0.42
+    },
+    {
+      "id": "bastion_boundary_south0",
+      "x": 54.5,
+      "z": 50.65,
+      "hx": 21.339999999999996,
+      "hz": 0.42
+    },
+    {
+      "id": "bastion_boundary_west0",
+      "x": 32.85,
+      "z": 34.25,
+      "hx": 0.42,
+      "hz": 16.089999999999996
+    },
+    {
+      "id": "bastion_boundary_east0",
+      "x": 76.15,
+      "z": 34.25,
+      "hx": 0.42,
+      "hz": 16.089999999999996
+    },
+    {
+      "id": "bastion_west_tower",
+      "x": 37.1,
+      "z": 27.8,
+      "hx": 2.6399999999999997,
+      "hz": 4.09
+    },
+    {
+      "id": "bastion_east_tower",
+      "x": 70.8,
+      "z": 29.4,
+      "hx": 2.9400000000000004,
+      "hz": 4.84
+    },
+    {
+      "id": "bastion_south_citadel",
+      "x": 54.5,
+      "z": 46.9,
+      "hx": 9.49,
+      "hz": 2.49
+    },
+    {
+      "id": "bastion_northeast_keep",
+      "x": 68.9,
+      "z": 21.7,
+      "hx": 3.34,
+      "hz": 2.19
+    },
+    {
+      "id": "bastion_barrier_43.532.1",
+      "x": 43.5,
+      "z": 32.1,
+      "hx": 0.76,
+      "hz": 1.21
+    },
+    {
+      "id": "bastion_barrier_64.732.1",
+      "x": 64.7,
+      "z": 32.1,
+      "hx": 0.76,
+      "hz": 1.21
+    },
+    {
+      "id": "bastion_barrier_43.539",
+      "x": 43.5,
+      "z": 39,
+      "hx": 0.76,
+      "hz": 1.21
+    },
+    {
+      "id": "bastion_barrier_64.739",
+      "x": 64.7,
+      "z": 39,
+      "hx": 0.76,
+      "hz": 1.21
+    },
+    {
+      "id": "campaign_signal_45_22.3",
+      "x": 45,
+      "z": 22.3,
+      "hx": 0.48,
+      "hz": 0.43
+    },
+    {
+      "id": "campaign_signal_57_22.3",
+      "x": 57,
+      "z": 22.3,
+      "hx": 0.48,
+      "hz": 0.43
+    },
+    {
+      "id": "bastion_beacon_41.221.8",
+      "x": 41.2,
+      "z": 21.8,
+      "hx": 0.4,
+      "hz": 0.4
+    },
+    {
+      "id": "bastion_beacon_60.521.8",
+      "x": 60.5,
+      "z": 21.8,
+      "hx": 0.4,
+      "hz": 0.4
+    },
+    {
+      "id": "bastion_beacon_42.343.0",
+      "x": 42.3,
+      "z": 43.0,
+      "hx": 0.4,
+      "hz": 0.4
+    },
+    {
+      "id": "bastion_beacon_65.543.4",
+      "x": 65.5,
+      "z": 43.4,
+      "hx": 0.4,
+      "hz": 0.4
+    },
+    {
+      "id": "bastion_supply_0",
+      "x": 37,
+      "z": 39,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "bastion_supply_1",
+      "x": 37,
+      "z": 42,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "bastion_supply_2",
+      "x": 71.7,
+      "z": 40.8,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "bastion_supply_3",
+      "x": 72,
+      "z": 44.8,
+      "hx": 0.72,
+      "hz": 0.65
+    },
+    {
+      "id": "bastion_supply_4",
+      "x": 61.2,
+      "z": 47.8,
+      "hx": 0.72,
+      "hz": 0.65
     },
     {
       "id": "morrow_condenser",
@@ -1508,6 +2222,286 @@
       "z": 10.8,
       "color": "#ffb064",
       "intensity": 20
+    },
+    {
+      "x": -3.7,
+      "y": 2.5,
+      "z": -44.6,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": 3.7,
+      "y": 2.5,
+      "z": -44.6,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": -45.7,
+      "y": 2.5,
+      "z": -3.7,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": -45.7,
+      "y": 2.5,
+      "z": 3.7,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": 43.1,
+      "y": 2.5,
+      "z": 16.7,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": 50.9,
+      "y": 2.5,
+      "z": 16.7,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": -6.470000000000001,
+      "y": 3.35,
+      "z": -70.4,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": 7.2299999999999995,
+      "y": 3.35,
+      "z": -70.4,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": -6.7700000000000005,
+      "y": 3.35,
+      "z": -59.0,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": 4.43,
+      "y": 3.45,
+      "z": -52.7,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": 13.33,
+      "y": 3.5500000000000003,
+      "z": -62.2,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": -6.970000000000001,
+      "y": 3.35,
+      "z": -81.0,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": -2.333333333333334,
+      "y": 3.586666666666667,
+      "z": -70.4,
+      "color": "#ffb064",
+      "intensity": 8
+    },
+    {
+      "x": 2.333333333333332,
+      "y": 3.586666666666667,
+      "z": -70.4,
+      "color": "#ffb064",
+      "intensity": 8
+    },
+    {
+      "x": -4.0,
+      "y": 3.786666666666666,
+      "z": -56.766666666666666,
+      "color": "#ffb064",
+      "intensity": 8
+    },
+    {
+      "x": 0.0,
+      "y": 3.786666666666666,
+      "z": -54.733333333333334,
+      "color": "#ffb064",
+      "intensity": 8
+    },
+    {
+      "x": -3.0,
+      "y": 3.6866666666666665,
+      "z": -75.1,
+      "color": "#ffb064",
+      "intensity": 8
+    },
+    {
+      "x": 4.0,
+      "y": 3.6866666666666665,
+      "z": -75.1,
+      "color": "#ffb064",
+      "intensity": 8
+    },
+    {
+      "x": -5.2,
+      "y": 1.25,
+      "z": -73.9,
+      "color": "#ffb064",
+      "intensity": 30
+    },
+    {
+      "x": 5.5,
+      "y": 1.25,
+      "z": -74.1,
+      "color": "#ffb064",
+      "intensity": 30
+    },
+    {
+      "x": -80.7,
+      "y": 7.8,
+      "z": -8.7,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": -80.7,
+      "y": 7.8,
+      "z": 0.1,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": -80.7,
+      "y": 7.8,
+      "z": 8.9,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": -73.0,
+      "y": 7.8,
+      "z": -8.7,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": -73.0,
+      "y": 7.8,
+      "z": 0.1,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": -73.0,
+      "y": 7.8,
+      "z": 8.9,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": -50.37,
+      "y": 3.85,
+      "z": -6.7,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": -68.57,
+      "y": 3.15,
+      "z": -4.4,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": -69.77,
+      "y": 3.35,
+      "z": 5.9,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": -59.57,
+      "y": 3.35,
+      "z": 10.1,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": -81.07,
+      "y": 3.85,
+      "z": 12.4,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": -78.27,
+      "y": 3.25,
+      "z": -14.6,
+      "color": "#ffb064",
+      "intensity": 20
+    },
+    {
+      "x": 37.1,
+      "y": 4.235,
+      "z": 34.345,
+      "color": "#ff4531",
+      "intensity": 22
+    },
+    {
+      "x": 70.8,
+      "y": 4.675000000000001,
+      "z": 37.22,
+      "color": "#ff4531",
+      "intensity": 22
+    },
+    {
+      "x": 54.5,
+      "y": 6.490000000000001,
+      "z": 50.725,
+      "color": "#ff4531",
+      "intensity": 22
+    },
+    {
+      "x": 68.9,
+      "y": 3.9600000000000004,
+      "z": 25.015,
+      "color": "#ff4531",
+      "intensity": 22
+    },
+    {
+      "x": 41.2,
+      "y": 3.45,
+      "z": 21.8,
+      "color": "#ff3923",
+      "intensity": 26
+    },
+    {
+      "x": 60.5,
+      "y": 3.45,
+      "z": 21.8,
+      "color": "#ff3923",
+      "intensity": 26
+    },
+    {
+      "x": 42.3,
+      "y": 3.45,
+      "z": 43.0,
+      "color": "#ff3923",
+      "intensity": 26
+    },
+    {
+      "x": 65.5,
+      "y": 3.45,
+      "z": 43.4,
+      "color": "#ff3923",
+      "intensity": 26
     }
   ],
   "interactables": [
@@ -1744,7 +2738,7 @@
       ]
     }
   ],
-  "layoutVersion": 2,
+  "layoutVersion": 3,
   "blaster": {
     "gripOrigin": [
       0,
@@ -1872,6 +2866,51 @@
         "z": 0
       },
       "note": "Past the ridge, the old sentries still face the long dark."
+    },
+    {
+      "id": "refuge",
+      "name": "The Hidden Refuge",
+      "bounds": {
+        "minX": -20,
+        "maxX": 20,
+        "minZ": -86,
+        "maxZ": -47
+      },
+      "center": {
+        "x": 0,
+        "z": -61
+      },
+      "note": "The small are not the weak. Here, every watch is kept for them."
+    },
+    {
+      "id": "drydock",
+      "name": "Kestrel Drydock",
+      "bounds": {
+        "minX": -88,
+        "maxX": -48,
+        "minZ": -20,
+        "maxZ": 20
+      },
+      "center": {
+        "x": -61,
+        "z": 7
+      },
+      "note": "Rebuild the wings. The sky belongs to those who return."
+    },
+    {
+      "id": "bastion",
+      "name": "Obsidian Bastion",
+      "bounds": {
+        "minX": 33.5,
+        "maxX": 75.5,
+        "minZ": 18.5,
+        "maxZ": 50
+      },
+      "center": {
+        "x": 54,
+        "z": 26
+      },
+      "note": "Their walls were built to end the road. We brought a door."
     }
   ],
   "connections": [
@@ -1910,6 +2949,33 @@
       "maxX": 34.2,
       "minZ": -2.8,
       "maxZ": 2.8
+    },
+    {
+      "id": "refuge_link",
+      "from": "market",
+      "to": "refuge",
+      "minX": -3,
+      "maxX": 3,
+      "minZ": -48,
+      "maxZ": -42
+    },
+    {
+      "id": "drydock_link",
+      "from": "salvage",
+      "to": "drydock",
+      "minX": -49,
+      "maxX": -43,
+      "minZ": -3,
+      "maxZ": 3
+    },
+    {
+      "id": "bastion_link",
+      "from": "watch",
+      "to": "bastion",
+      "minX": 44,
+      "maxX": 50,
+      "minZ": 13.5,
+      "maxZ": 20
     }
   ],
   "characterParts": {
@@ -1930,9 +2996,9 @@
     ]
   },
   "stats": {
-    "worldDraws": 277,
-    "worldTriangles": 600740,
-    "materialCount": 34,
+    "worldDraws": 352,
+    "worldTriangles": 875731,
+    "materialCount": 38,
     "worldChunks": [
       "World_Interior_archive_Door_L",
       "World_Interior_archive_Door_R",
@@ -1958,11 +3024,16 @@
       "World_Interior_workshop_Wall_N",
       "World_Interior_workshop_Wall_S",
       "World_Interior_workshop_Wall_W",
+      "World_bastion",
+      "World_campaign_connections",
+      "World_campaign_landscape",
       "World_connections",
       "World_courtyard",
+      "World_drydock",
       "World_landing",
       "World_landscape",
       "World_market",
+      "World_refuge",
       "World_salvage",
       "World_watch"
     ],
@@ -1977,7 +3048,7 @@
       },
       "World_market": {
         "draws": 23,
-        "triangles": 93095
+        "triangles": 89267
       },
       "World_Interior_cantina_Fixed": {
         "draws": 14,
@@ -2013,7 +3084,7 @@
       },
       "World_salvage": {
         "draws": 22,
-        "triangles": 85808
+        "triangles": 82112
       },
       "World_Interior_workshop_Fixed": {
         "draws": 10,
@@ -2053,7 +3124,7 @@
       },
       "World_watch": {
         "draws": 20,
-        "triangles": 79124
+        "triangles": 77243
       },
       "World_Interior_archive_Fixed": {
         "draws": 8,
@@ -2089,11 +3160,32 @@
       },
       "World_landscape": {
         "draws": 6,
-        "triangles": 8379
+        "triangles": 8432
+      },
+      "World_campaign_connections": {
+        "draws": 10,
+        "triangles": 3468
+      },
+      "World_refuge": {
+        "draws": 23,
+        "triangles": 128713
+      },
+      "World_drydock": {
+        "draws": 21,
+        "triangles": 119822
+      },
+      "World_bastion": {
+        "draws": 15,
+        "triangles": 31202
+      },
+      "World_campaign_landscape": {
+        "draws": 6,
+        "triangles": 1138
       }
     },
     "textureFilesEmbedded": [
       "ochre-stone.png",
+      "population-alloy.png",
       "ship-panels.png",
       "rain-slate.png",
       "interior-panels.png",

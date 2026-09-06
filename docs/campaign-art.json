@@ -1,0 +1,53 @@
+{
+  "concept": {
+    "tool": "built-in imagegen",
+    "prompt": "Three-panel 3D game environment concept art for a premium high-isometric exploration adventure called Rebel Watch. No text or lettering. Consistent HD voxel aesthetic: blocky beveled meshes with highly believable physical lighting and wet surfaces, miniature human scale, dense lived-in space western city. LEFT PANEL: hidden Rebel sanctuary after rain, warm ochre stone, clusters of domed houses along courtyard perimeter, orange repaired awnings, lantern strings, copper moisture collectors, central peaceful open square for a tiny green foundling in a floating pram, subtle blue communications relays, a landing circle to the right. MIDDLE PANEL: large industrial drydock, ochre stone and weathered steel, a sleek light-colored strike fighter with forward cockpit and wing cannons parked in an open maintenance pad, high gantry cranes along perimeter, hanging chains, tool lockers and salvage crates, cyan floor guide strips, warm work lamps, clear pedestrian service aisles. RIGHT PANEL: Imperial fortress courtyard, severe black gunmetal bastions, red slit lights, tall squared pylons, a huge dark citadel facade on the rear edge, open octagonal dueling arena at center framed by red light inlays and low armored barriers, fog beyond outer ramparts. All panels show playable open paths connecting detailed architecture. Sad but beautiful dusk, cool cyan ambient, warm brass practical light in sanctuary and drydock, foreboding red practical light in fortress. Wet stone puddle reflections, cinematic haze, crisp models and sophisticated realistic PBR materials, actual real-time game render target rather than a painting. No copied movie stills, no logos.",
+    "output": "public/assets/concepts/campaign-target.png"
+  },
+  "appearanceReferences": [
+    "https://www.starwars.com/databank/grogu",
+    "https://www.starwars.com/databank/darth-vader",
+    "https://www.starwars.com/databank/tie-fighter",
+    "https://www.starwars.com/databank/x-wing-starfighter"
+  ],
+  "process": "Authored Blender geometry through the connected Blender MCP bridge; existing imagegen texture maps reused. No external meshes.",
+  "editableMasters": [
+    "art/ashfall_master.blend",
+    "art/ashfall_campaign.blend"
+  ],
+  "navigationValidation": {
+    "baseline": "tests/fixtures/campaign-baseline.json",
+    "method": "Navigation.isFree with actor clearance and four-neighbor flood fill, 0.05m grid; cross-checked on 0.10m grid.",
+    "playerConnectedSquareMetres": {
+      "before": 2869.89,
+      "after": 6020.9725,
+      "ratio": 2.0979802361762996
+    },
+    "companionConnectedSquareMetres": {
+      "before": 2756.16,
+      "after": 5816.19,
+      "ratio": 2.110251219087426
+    },
+    "tests": [
+      "tests/campaign-world.test.ts",
+      "tests/campaign-assets.test.ts"
+    ]
+  },
+  "landingDeckFix": "Core top lowered from Y=0 to Y=-0.065; visible panels remain Y=0, removing coplanar depth flicker. Central support bases remain Y=-3.2.",
+  "review": "Blender studio character, ship and weapon renders inspected. Integrated game captures and performance are verified separately.",
+  "drydockClearance": {
+    "gantryLocation": "West perimeter of the drydock",
+    "minimumWingClearanceMetres": 6.4,
+    "emptyVerticalTakeoffColumn": {
+      "x": [
+        -66,
+        -56
+      ],
+      "z": [
+        -3.73,
+        5.29
+      ],
+      "minY": 0.25
+    }
+  }
+}

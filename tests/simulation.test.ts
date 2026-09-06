@@ -328,10 +328,10 @@ test('city traversable footprint is at least five times the original connected u
   const expanded = unionArea(WALK_AREAS);
   assert.ok(Math.abs(original - 720.86) < 1e-6);
   assert.ok(expanded >= original * 5, `${expanded} / ${original} exceeds five`);
-  assert.equal(WORLD.districts.length, 7); assert.equal(WORLD.connections.length, 4);
+  assert.equal(WORLD.districts.length, 10); assert.equal(WORLD.connections.length, 7);
 });
 
-test('all seven district locations and threshold field notes derive from actual 2D coordinates', () => {
+test('all ten district locations and threshold field notes derive from actual 2D coordinates', () => {
   const sim = new Simulation();
   for (const district of WORLD.districts) {
     assert.equal(getZone(district.center), district.id);
@@ -339,7 +339,7 @@ test('all seven district locations and threshold field notes derive from actual 
     assert.equal(sim.zone, district.id); assert.ok(sim.visitedZones.has(sim.zone));
     assert.ok(sim.drainEvents().some(e => e.type === 'note' && e.title === district.name));
   }
-  assert.equal(sim.visitedCount, 7);
+  assert.equal(sim.visitedCount, 10);
   assert.equal(getZone({ x: 0, z: -13.8 }), 'market');
   assert.equal(getZone({ x: 0, z: 13.8 }), 'landing');
   assert.equal(getZone({ x: -15, z: 0 }), 'salvage');
@@ -441,7 +441,7 @@ test('expanded Blender city: seeded long routes reach every district without col
     assert.ok(gap(sim.player, sim.droid) < 2.5, `companion catches up in ${district.id} ${JSON.stringify(target)}`);
     routes++;
   }
-  assert.equal(routes, 56); assert.equal(sim.visitedCount, 7);
+  assert.equal(routes, 80); assert.equal(sim.visitedCount, 10);
 });
 
 test('expanded Blender city: all authored lore landmarks have a collision-safe reachable interaction approach', () => {

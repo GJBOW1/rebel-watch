@@ -20,6 +20,7 @@ import { CityUI } from './city-ui';
 import { HUD } from './hud';
 import { Soundscape } from './audio';
 import { createEnvironment, createRainPools, createLanternHaze, createMotes } from './atmosphere';
+import { Expedition } from './expedition';
 import './style.css';
 
 interface Manifest {
@@ -28,6 +29,7 @@ interface Manifest {
   interactables:{id:string;x:number;z:number}[];
 }
 interface Evidence {
+  expedition:ReturnType<Expedition['evidence']>|null;
   residentsEnabled:boolean;citizens:{id:number;name:string;kind:string;x:number;z:number;talking:number}[];conversations:number;
   trafficEnabled:boolean;flights:{id:number;phase:string;x:number;y:number;z:number;landings:number;departures:number}[];
   battlePhase:string;joined:boolean;guardians:{id:number;x:number;z:number;health:number;state:string}[];completedEncounters:number;
@@ -47,7 +49,7 @@ const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'h
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.shadowMap.autoUpdate=false;
 renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.info.autoReset=false;
 scene.environment=createEnvironment(renderer);scene.environmentIntensity=.55;
-const camera=new THREE.PerspectiveCamera(35,innerWidth/innerHeight,.15,180);
+const camera=new THREE.PerspectiveCamera(35,innerWidth/innerHeight,.15,500);
 const offset=new THREE.Vector3(12,20,23);const cameraTarget=new THREE.Vector3(0,0,0);camera.position.copy(offset);camera.lookAt(cameraTarget);
 const orbit=new OrbitControls(camera,canvas);orbit.target.copy(cameraTarget);orbit.enableDamping=true;orbit.dampingFactor=.07;orbit.enabled=false;orbit.minDistance=9;orbit.maxDistance=145;orbit.minPolarAngle=.25;orbit.maxPolarAngle=1.32;orbit.screenSpacePanning=false;
 const sun=new THREE.DirectionalLight(0xffd6a0,1.8);sun.position.set(-14,24,-8);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);Object.assign(sun.shadow.camera,{left:-36,right:36,top:28,bottom:-28,near:.5,far:70});sun.shadow.normalBias=.035;sun.shadow.bias=-.00015;sun.shadow.radius=3;scene.add(sun);scene.add(sun.target);
@@ -55,6 +57,7 @@ const hemi=new THREE.HemisphereLight(0x91bbdd,0x4d3a25,.85);scene.add(hemi);
 const rim=new THREE.DirectionalLight(0x719bc8,.9);rim.position.set(15,10,14);scene.add(rim);
 const pools=createRainPools(scene);const motes=createMotes(scene);
 const composer=new EffectComposer(renderer);composer.addPass(new RenderPass(scene,camera));const ao=new SSAOPass(scene,camera,innerWidth,innerHeight,16);ao.kernelRadius=7;ao.minDistance=.003;ao.maxDistance=.10;composer.addPass(ao);const aoRender=ao.render.bind(ao);ao.render=(...args)=>{const hidden:THREE.Object3D[]=[];scene.traverse(o=>{if(o instanceof THREE.Mesh&&o.visible){const m=Array.isArray(o.material)?o.material:[o.material];if(m.some(v=>v.transparent)){hidden.push(o);o.visible=false;}}});try{aoRender(...args);}finally{hidden.forEach(o=>o.visible=true);}};const bloom=new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),.24,.6,1.1);composer.addPass(bloom);composer.addPass(new OutputPass());
+let expedition:Expedition|null=null;
 let life:CityLife;let traffic:AirTraffic;let battle:StreetBattle;let populationView:PopulationView;let trafficView:TrafficView;
 let interiorView:InteriorView;let combat:Combat;let combatView:CombatView;let simulation:Simulation;let manifest:Manifest;let hunter:THREE.Group;let droid:THREE.Group;let token:THREE.Group;let machine:THREE.Group;let patrol:THREE.Group;
 let mapOpen=false;let fireHeld=false;const aim={x:0,z:6};
@@ -75,18 +78,19 @@ scan.rotation.x=-Math.PI/2;scan.visible=false;scene.add(scan);
 const markerMaterial=new THREE.MeshBasicMaterial({color:0xa5e4f4,transparent:true,opacity:.75,side:THREE.DoubleSide,depthWrite:false});
 const markers=new Map<string,THREE.Mesh>();
 const zones=Object.fromEntries(WORLD.districts.map(d=>[d.id,d]));
-const cityUI=new CityUI(point=>{if(!ready||combat.defeated)return;simulation.walkTo(point);targetRing.position.set(point.x,.06,point.z);targetAge=0;},open=>{mapOpen=open;keys.clear();fireHeld=false;if(ready)simulation.cancelWalk();if(open){emoteOpen=false;hud.toggleEmotes(false);}},toggleWeapon,toggleEnemies);
+const cityUI=new CityUI(point=>{if(!ready||combat.defeated||expedition?.locked||expedition?.bossEncounter)return;simulation.walkTo(point);targetRing.position.set(point.x,.06,point.z);targetAge=0;},open=>{mapOpen=open;keys.clear();fireHeld=false;if(ready)simulation.cancelWalk();if(open){emoteOpen=false;hud.toggleEmotes(false);}},toggleWeapon,toggleEnemies);
 function toggleWeapon():void{if(!ready||!started||combat.defeated)return;combat.toggleEquip();simulation.cancelWalk();fireHeld=false;aim.x=simulation.player.x+Math.sin(simulation.player.yaw)*8;aim.z=simulation.player.z+Math.cos(simulation.player.yaw)*8;sound.play('equip');canvas.focus();updateHud();}
-function toggleEnemies():void{if(!ready||!started)return;battle.setEnabled(!battle.enabled,simulation.player);fireHeld=false;canvas.focus();updateHud();}
-function joinBattle():void{if(!ready||!started)return;if(freeCam)setFreeCam(false);if(battle.joined)battle.standDown();else if(!battle.join(simulation.player)){hud.note('Quiet streets','Enable patrols with N to choose a side.',4);}fireHeld=false;canvas.focus();updateHud();}
+function toggleEnemies():void{if(!ready||!started)return;const enabled=!battle.enabled;battle.setEnabled(enabled,simulation.player);expedition?.setEnemies(enabled);fireHeld=false;canvas.focus();updateHud();}
+function joinBattle():void{if(!ready||!started||expedition?.bossEncounter||expedition?.aboard)return;if(freeCam)setFreeCam(false);if(battle.joined)battle.standDown();else if(!battle.join(simulation.player)){hud.note('Quiet streets','Enable patrols with N to choose a side.',4);}fireHeld=false;canvas.focus();updateHud();}
 function initializeSystems():void{
  simulation=new Simulation(manifest.obstacles);const nav=new Navigation(manifest.obstacles,.43);combat=new Combat(nav);battle=new StreetBattle(nav,combat);life=new CityLife(manifest.obstacles);traffic=new AirTraffic();
  battle.setVisibilityTest(p=>{const v=new THREE.Vector3(p.x,.9,p.z).project(camera);return v.z<1&&Math.abs(v.x)<1.15&&Math.abs(v.y)<1.15;});
  battle.setEnabled(true,simulation.player);
+ expedition?.reset();
 }
 function watchTraffic():void{if(!ready)return;traffic.requestArrival(simulation.player);const dock=[...DOCKS].sort((a,b)=>Math.hypot(a.x-simulation.player.x,a.z-simulation.player.z)-Math.hypot(b.x-simulation.player.x,b.z-simulation.player.z))[0];setFreeCam(true);orbit.target.set(dock.x,dock.y+1,dock.z);cameraTarget.copy(orbit.target);camera.position.copy(orbit.target).add(new THREE.Vector3(18,14,23));orbit.update();hud.note(dock.name,'Scheduled arrivals. Orbit to follow a ship. C returns to the street.',5);}
 function pointerAim(event:PointerEvent):void{const rect=canvas.getBoundingClientRect();pointer.set((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);locator.setFromCamera(pointer,camera);if(locator.ray.intersectPlane(aimPlane,targetPoint)){aim.x=targetPoint.x;aim.z=targetPoint.z;}}
-function shoot():void{if(!ready||!started||settings||mapOpen||freeCam||emoteOpen||combat.defeated)return;combatView.update(combat,aim,elapsed,0);const muzzle=combatView.muzzle();combat.fire(simulation.playerNav.segmentClear(simulation.player,muzzle)?muzzle:simulation.player,aim);}
+function shoot():void{if(!ready||!started||settings||mapOpen||freeCam||emoteOpen||combat.defeated||expedition?.locked)return;combatView.update(combat,aim,elapsed,0);const muzzle=combatView.muzzle();const origin=simulation.playerNav.segmentClear(simulation.player,muzzle)?muzzle:simulation.player;if(!expedition?.fire(origin,aim))combat.fire(origin,aim);}
 
 function weatherStone(material:THREE.MeshStandardMaterial):void{
   if(!/masonry|mortar|plaster|ochre|flagstone|silt/i.test(material.name))return;
@@ -126,8 +130,8 @@ function prepareModel(model:THREE.Group):THREE.Group{
 
 async function load():Promise<void>{
   try{
-    const response=await fetch('/assets/models/manifest.json');if(!response.ok)throw new Error(`World manifest: ${response.status}`);manifest=await response.json() as Manifest;
-    const loader=new GLTFLoader();const models=await Promise.all(['world','hunter','tallow','machine','token','blaster','citizen-human','citizen-twilek','droid-protocol','droid-astromech','stormtrooper','jedi','shuttle','freighter','landing-dock'].map(name=>loader.loadAsync(`/assets/models/${name}.glb`)));
+    const response=await fetch('/assets/models/manifest.json?v=emberline-1');if(!response.ok)throw new Error(`World manifest: ${response.status}`);manifest=await response.json() as Manifest;
+    const loader=new GLTFLoader();const modelNames=['world','hunter','tallow','machine','token','blaster','citizen-human','citizen-twilek','droid-protocol','droid-astromech','stormtrooper','jedi','shuttle','freighter','landing-dock','grogu','vader','imperial-warden','rebel-fighter','tie-fighter','ion-lance','scatter-blaster','arc-repeater'];const models=await Promise.all(modelNames.map(name=>loader.loadAsync(`/assets/models/${name}.glb?v=emberline-1`)));
     const world=prepareModel(models[0].scene);world.name='The Ninth Courtyard — Blender';scene.add(world);interiorView=new InteriorView(world,()=>sound.play('door'));
     hunter=prepareModel(models[1].scene);droid=prepareModel(models[2].scene);machine=prepareModel(models[3].scene);token=prepareModel(models[4].scene);patrol=prepareModel(models[2].scene.clone(true));
     hunter.name='Traveler';droid.name='Tallow';machine.position.set(8,0,-7);scene.add(hunter,droid,machine,token,patrol);
@@ -135,6 +139,9 @@ async function load():Promise<void>{
     initializeSystems();combatView=new CombatView(scene,hunter,prepareModel(models[5].scene),prepareModel(models[10].scene));
     populationView=new PopulationView(scene,Object.fromEntries(['citizen-human','citizen-twilek','droid-protocol','droid-astromech','jedi'].map((name,i)=>[name,prepareModel(models[i===4?11:i+6].scene)])));
     trafficView=new TrafficView(scene,Object.fromEntries(['shuttle','freighter','landing-dock'].map((name,i)=>[name,prepareModel(models[i+12].scene)])));
+    expedition=new Expedition({scene,camera,hunter,tallow:droid,models:Object.fromEntries(modelNames.map((name,i)=>[name,i>=15?prepareModel(models[i].scene):models[i].scene])),keys,sim:()=>simulation,combat:()=>combat,battle:()=>battle,combatView,obstacles:manifest.obstacles,hud,sound,
+      route:point=>{simulation.walkTo(point);targetRing.position.set(point.x,.06,point.z);targetAge=0;},
+      closePanels:()=>{if(freeCam)setFreeCam(false);if(mapOpen)cityUI.setMap(false);if(emoteOpen){emoteOpen=false;hud.toggleEmotes(false);}fireHeld=false;},resetCamera:()=>recenter(),clearFire:()=>{fireHeld=false;}});
     for(let i=0;i<12;i++){const light=new THREE.PointLight(0xffbc72,0,10,2);scene.add(light);lampPool.push(light);}
     for(const lamp of manifest.lights)createLanternHaze(scene,lamp.x,lamp.y,lamp.z,lamp.color);
     const scoutLight=new THREE.PointLight(0xffbb6b,2.2,2.5,2);scoutLight.position.set(0,.45,.32);droid.add(scoutLight);
@@ -153,14 +160,15 @@ function setPortrait():void{
   const r=new THREE.WebGLRenderer({antialias:true});r.setSize(220,220);r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=1.2;r.render(portraitScene,cam);hud.setPortrait(r.domElement.toDataURL());r.dispose();
 }
 
-function startGame():void{if(!ready)return;started=true;hud.dismissIntro();void sound.start().catch(error=>console.warn('Audio start',error));hud.note('A small vow', 'Recover the foundling’s token in the west court. Tallow remembers how to bring things home.',8);canvas.focus();}
-function setFreeCam(active:boolean):void{if(active&&ready&&battle.joined)battle.standDown();freeCam=active;orbit.enabled=active;fireHeld=false;if(cityUI.mapOpen)cityUI.setMap(false);if(active&&ready)simulation.cancelWalk();emoteOpen=false;hud.toggleEmotes(false);hud.setFreeCam(active);keys.clear();if(active){orbit.target.copy(cameraTarget);orbit.update();}else{cameraTarget.copy(orbit.target);camera.zoom=1;camera.updateProjectionMatrix();}canvas.focus();}
+function startGame():void{if(!ready)return;started=true;hud.dismissIntro();void sound.start().catch(error=>console.warn('Audio start',error));hud.note('Operation Emberline', 'A Rebel courier waits inside the Still Ember. K opens your mission journal. Your next chapter is marked in gold.',8);canvas.focus();}
+function setFreeCam(active:boolean):void{if(active&&(expedition?.aboard||expedition?.bossEncounter||expedition?.cinematic.active)){hud.note('Hold the field','Return from flight or withdraw from the boss encounter before entering free camera.',4);return;}if(active&&ready&&battle.joined)battle.standDown();freeCam=active;orbit.enabled=active;fireHeld=false;if(cityUI.mapOpen)cityUI.setMap(false);if(active&&ready)simulation.cancelWalk();emoteOpen=false;hud.toggleEmotes(false);hud.setFreeCam(active);keys.clear();if(active){orbit.target.copy(cameraTarget);orbit.update();}else{cameraTarget.copy(orbit.target);camera.zoom=1;camera.updateProjectionMatrix();}canvas.focus();}
 function cameraMode(mode:'orbit'|'pan'):void{orbit.mouseButtons.LEFT=mode==='pan'?THREE.MOUSE.PAN:THREE.MOUSE.ROTATE;document.querySelectorAll<HTMLElement>('[data-camera]').forEach(b=>{if(b.dataset.camera!=='recenter'){b.classList.toggle('selected',b.dataset.camera===mode);b.setAttribute('aria-pressed',String(b.dataset.camera===mode));}});}
 function recenter():void{if(!ready)return;const room=getInterior(simulation.player);if(room)cameraTarget.set(room.center.x-.8,.4,room.center.z-1);else cameraTarget.set(simulation.player.x-1.5,0,simulation.player.z-3);orbit.target.copy(cameraTarget);camera.position.copy(cameraTarget).add((room?.id==='archive'?new THREE.Vector3(12,20,-23):room?.id==='workshop'?new THREE.Vector3(-12,20,23):offset.clone()).multiplyScalar(room?.68:1));camera.zoom=1;camera.updateProjectionMatrix();orbit.update();}
 function setSettings(active:boolean):void{settings=active;fireHeld=false;if(active&&cityUI.mapOpen)cityUI.setMap(false);if(active){emoteOpen=false;hud.toggleEmotes(false);}hud.setSettings(active);keys.clear();if(!active)canvas.focus();}
 function toggleEmotes():void{emoteOpen=!emoteOpen;fireHeld=false;if(emoteOpen)simulation.cancelWalk();hud.toggleEmotes(emoteOpen);keys.clear();}
 function interact():void{
   if(!ready||!started)return;
+  if(expedition?.interact())return;
   if(promptId?.startsWith('citizen:')){const note=life.talk(Number(promptId.split(':')[1]),simulation.player);if(note){simulation.cancelWalk();hud.note(note.title,note.text,10);sound.play('chirp',simulation.bond);}return;}
   if(promptId?.startsWith('door:')){const approach=getNearbyDoor(simulation.player);if(approach&&!combat.defeated){simulation.walkTo(approach.destination);sound.play('chirp',simulation.bond);}return;}
   const entry=[...WORLD.landmarks,...INTERIOR_LANDMARKS].find(item=>item.id===promptId);
@@ -170,7 +178,7 @@ function interact():void{
 }
 
 function dispatchCommand(command:string):void{
-  if(!started||settings||mapOpen||freeCam)return;
+  if(!started||settings||mapOpen||freeCam||expedition?.locked)return;
   if(command==='emote'){toggleEmotes();return;}
   if(['call','stay','scan','overwatch'].includes(command))simulation.command(command as 'call'|'stay'|'scan'|'overwatch');
 }
@@ -187,6 +195,7 @@ function bindControls():void{
   document.querySelector('#join-battle')?.addEventListener('click',joinBattle);
   document.querySelector('#encounter-button')?.addEventListener('click',()=>{if(ready){battle.requestEncounter(simulation.player);canvas.focus();}});
   document.querySelector('#traffic-watch')?.addEventListener('click',watchTraffic);
+  document.querySelector('#pilot-route')?.addEventListener('click',()=>expedition?.routeToShip());
   document.querySelector('#traffic-arrival')?.addEventListener('click',()=>{if(ready){traffic.requestArrival(simulation.player);hud.note('Landing clearance','The nearest skyport has received your signal.',4);canvas.focus();}});
   document.querySelector<HTMLInputElement>('#residents-toggle')?.addEventListener('change',e=>{if(ready)life.enabled=(e.target as HTMLInputElement).checked;});
   document.querySelector<HTMLInputElement>('#traffic-toggle')?.addEventListener('change',e=>{if(ready)traffic.enabled=(e.target as HTMLInputElement).checked;});
@@ -198,10 +207,11 @@ function bindControls():void{
   document.querySelector<HTMLInputElement>('#volume')?.addEventListener('input',event=>{const input=event.target as HTMLInputElement;sound.setVolume(Number(input.value)/(Number(input.max)>1?100:1));});
   document.querySelector<HTMLInputElement>('#reduced-motion')?.addEventListener('change',event=>{reducedMotion=(event.target as HTMLInputElement).checked;document.documentElement.classList.toggle('reduced-motion',reducedMotion);});
   window.addEventListener('keydown',event=>{
-    if(event.code==='Escape'){event.preventDefault();if(!ready)return;if(mapOpen){cityUI.setMap(false);return;}if(settings){setSettings(false);return;}if(emoteOpen){emoteOpen=false;hud.toggleEmotes(false);}else if(freeCam)setFreeCam(false);else setSettings(!settings);return;}
+    if(event.code==='Escape'){event.preventDefault();if(!ready)return;if(expedition?.handleEscape())return;if(mapOpen){cityUI.setMap(false);return;}if(settings){setSettings(false);return;}if(emoteOpen){emoteOpen=false;hud.toggleEmotes(false);}else if(freeCam)setFreeCam(false);else setSettings(!settings);return;}
     if(event.target instanceof HTMLInputElement||event.target instanceof HTMLSelectElement)return;
     if(!started){if(event.code==='Enter')startGame();return;}
     if(settings)return;
+    if(!emoteOpen&&expedition?.handleKey(event))return;
     if(event.code==='KeyM'&&!event.repeat){cityUI.setMap(!mapOpen);return;}
     if(mapOpen)return;
     if(event.code==='KeyN'&&!event.repeat){toggleEnemies();return;}
@@ -219,10 +229,10 @@ function bindControls():void{
   window.addEventListener('keyup',event=>keys.delete(event.code));window.addEventListener('blur',()=>{keys.clear();fireHeld=false;});window.addEventListener('pointerup',()=>fireHeld=false);
   document.addEventListener('visibilitychange',()=>{keys.clear();fireHeld=false;lastFrame=performance.now();accumulator=0;});
   canvas.tabIndex=0;
-  canvas.addEventListener('pointerdown',event=>{mouseStart.set(event.clientX,event.clientY);canvas.focus();if(started)void sound.start();pointerAim(event);if(event.button===0&&combat?.equipped){fireHeld=true;shoot();}});
+  canvas.addEventListener('pointerdown',event=>{mouseStart.set(event.clientX,event.clientY);canvas.focus();if(started)void sound.start();pointerAim(event);if(event.button===0&&(combat?.equipped||expedition?.aboard)){fireHeld=true;if(!expedition?.aboard)shoot();}});
   canvas.addEventListener('pointermove',pointerAim);
   canvas.addEventListener('pointerup',event=>{
-    if(freeCam||!started||settings||mapOpen||combat.equipped||combat.defeated||emoteOpen||event.button!==0||mouseStart.distanceTo(new THREE.Vector2(event.clientX,event.clientY))>5)return;
+    if(expedition?.locked||freeCam||!started||settings||mapOpen||combat.equipped||combat.defeated||emoteOpen||event.button!==0||mouseStart.distanceTo(new THREE.Vector2(event.clientX,event.clientY))>5)return;
     const rect=canvas.getBoundingClientRect();pointer.set((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);locator.setFromCamera(pointer,camera);
     if(locator.ray.intersectPlane(floorPlane,targetPoint)){simulation.walkTo({x:targetPoint.x,z:targetPoint.z});targetRing.position.set(targetPoint.x,.06,targetPoint.z);targetAge=0;}
   });
@@ -279,7 +289,9 @@ function updateHud():void{
     if(Math.hypot(item.x-s.player.x,item.z-s.player.z)<(item.id==='token'?3.2:2.8)){promptId=item.id;promptTitle=item.title;detail=item.detail;break;}
   }
   if(!promptTitle&&s.mode==='hold'){promptTitle=null;}
-  hud.setPrompt(started&&!emoteOpen&&!settings&&!mapOpen&&!freeCam?promptTitle:null,detail);
+  expedition?.updateUI(started);const missionPrompt=expedition?.prompt;if(missionPrompt){promptId=missionPrompt.id;promptTitle=missionPrompt.title;detail=missionPrompt.detail;}
+  hud.setPrompt(started&&!emoteOpen&&!settings&&!mapOpen&&!freeCam&&!expedition?.locked?promptTitle:null,detail);
+  cityUI.campaignMarkers=expedition?.campaign.markers??[];cityUI.selectedMarker=expedition?.ui.trackedMarker?.id??null;
   cityUI.update(s,combat,manifest.obstacles,freeCam,battle,life);
   const q=(id:string)=>document.getElementById(id)!;
   q('life-status').textContent=life.enabled?`${life.citizens.length} residents · ${life.conversations} conversations`:'Residents paused';
@@ -290,14 +302,14 @@ function updateHud():void{
   (q('residents-toggle') as HTMLInputElement).checked=life.enabled;(q('traffic-toggle') as HTMLInputElement).checked=traffic.enabled;
   (q('music-toggle') as HTMLInputElement).checked=sound.musicEnabled;
   canvas.dataset.state=JSON.stringify(snapshot());
-  const points:Record<string,{x:number;y:number}>={};for(const item of [{id:'token',x:-8,z:-6},{id:'center',x:3,z:0},{id:'gate',x:12,z:0},...WORLD.landmarks,...INTERIOR_LANDMARKS,...INTERIORS.map(b=>({id:`door-${b.id}`,x:b.door.x,z:b.door.z})),...WORLD.districts.map(d=>({id:d.id,...d.center})),...combat.enemies.map(e=>({id:`enemy-${e.id}`,x:e.x,z:e.z})),...life.citizens.map(n=>({id:`citizen-${n.id}`,x:n.x,z:n.z})),...battle.guardians.map(g=>({id:`jedi-${g.id}`,x:g.x,z:g.z}))]){const p=new THREE.Vector3(item.x,/^(enemy|citizen|jedi)-/.test(item.id)?1.15:0,item.z).project(camera);points[item.id]={x:(p.x*.5+.5)*innerWidth,y:(-p.y*.5+.5)*innerHeight};}canvas.dataset.points=JSON.stringify(points);
+  const points:Record<string,{x:number;y:number}>={};for(const item of [{id:'token',x:-8,z:-6},{id:'center',x:3,z:0},{id:'gate',x:12,z:0},...WORLD.landmarks,...INTERIOR_LANDMARKS,...INTERIORS.map(b=>({id:`door-${b.id}`,x:b.door.x,z:b.door.z})),...WORLD.districts.map(d=>({id:d.id,...d.center})),...(expedition?.campaign.markers.map(m=>({id:`mission-${m.id}`,x:m.x,z:m.z}))??[]),...(expedition?.boss.boss?[{id:'boss',x:expedition.boss.boss.x,z:expedition.boss.boss.z}]:[]),...combat.enemies.map(e=>({id:`enemy-${e.id}`,x:e.x,z:e.z})),...life.citizens.map(n=>({id:`citizen-${n.id}`,x:n.x,z:n.z})),...battle.guardians.map(g=>({id:`jedi-${g.id}`,x:g.x,z:g.z}))]){const p=new THREE.Vector3(item.x,/^(enemy|citizen|jedi)-/.test(item.id)?1.15:0,item.z).project(camera);points[item.id]={x:(p.x*.5+.5)*innerWidth,y:(-p.y*.5+.5)*innerHeight};}canvas.dataset.points=JSON.stringify(points);
   for(const event of s.drainEvents()){
     if(event.type==='sound')sound.play(event.sound||'chirp',s.bond);
     else if(event.type==='note'||event.type==='threat'||event.type==='objective'){hud.note(event.title||'Field note',event.text||'',event.type==='objective'?8:5);if(event.type==='objective')sound.play('success',s.bond);}
   }
 }
 function snapshot():Evidence{
-  const sorted=[...timings].sort((a,b)=>a-b);return{residentsEnabled:ready&&life.enabled,citizens:ready?life.citizens.map(n=>({id:n.id,name:n.name,kind:n.kind,x:n.x,z:n.z,talking:n.talking})):[],conversations:ready?life.conversations:0,trafficEnabled:ready&&traffic.enabled,flights:ready?traffic.flights.map(f=>({id:f.id,phase:f.phase,x:f.x,y:f.y,z:f.z,landings:f.landings,departures:f.departures})):[],battlePhase:ready?battle.phase:'patrol',joined:ready&&battle.joined,guardians:ready?battle.guardians.map(g=>({id:g.id,x:g.x,z:g.z,health:g.health,state:g.state})):[],completedEncounters:ready?battle.completedEncounters:0,musicEnabled:sound.musicEnabled,musicVolume:sound.musicVolume,musicVoices:sound.musicVoices,interior:ready?simulation.interior:null,visitedInteriors:ready?[...simulation.visitedInteriors]:[],doors:ready?interiorView.evidence():[],ready,started,zone:ready?simulation.zone:'loading',mode:ready?simulation.mode:'loading',player:ready?{x:simulation.player.x,z:simulation.player.z}:{x:0,z:0},droid:ready?{x:simulation.droid.x,z:simulation.droid.z}:{x:0,z:0},bond:ready?simulation.bond:0,objectives:ready?{...simulation.objectives}:{token:false,escort:false,ridge:false},ridgeProgress:ready?simulation.ridgeProgress:0,freeCam,visited:ready?simulation.visitedCount:0,weapon:ready?combat.equipped:false,enemiesEnabled:ready?combat.enabled:false,shield:ready?combat.shield:100,kills:ready?combat.kills:0,enemies:ready?combat.enemies.map(e=>({id:e.id,x:e.x,z:e.z,health:e.health,state:e.state})):[],projectiles:ready?combat.projectiles.length:0,scanTime:ready?simulation.scanTime:0,frameCount,fps,p95ms:sorted[Math.floor(sorted.length*.95)]||0,drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,resolution:`${canvas.width}×${canvas.height}`};
+  const sorted=[...timings].sort((a,b)=>a-b);return{expedition:expedition?.evidence()??null,residentsEnabled:ready&&life.enabled,citizens:ready?life.citizens.map(n=>({id:n.id,name:n.name,kind:n.kind,x:n.x,z:n.z,talking:n.talking})):[],conversations:ready?life.conversations:0,trafficEnabled:ready&&traffic.enabled,flights:ready?traffic.flights.map(f=>({id:f.id,phase:f.phase,x:f.x,y:f.y,z:f.z,landings:f.landings,departures:f.departures})):[],battlePhase:ready?battle.phase:'patrol',joined:ready&&battle.joined,guardians:ready?battle.guardians.map(g=>({id:g.id,x:g.x,z:g.z,health:g.health,state:g.state})):[],completedEncounters:ready?battle.completedEncounters:0,musicEnabled:sound.musicEnabled,musicVolume:sound.musicVolume,musicVoices:sound.musicVoices,interior:ready?simulation.interior:null,visitedInteriors:ready?[...simulation.visitedInteriors]:[],doors:ready?interiorView.evidence():[],ready,started,zone:ready?simulation.zone:'loading',mode:ready?simulation.mode:'loading',player:ready?{x:simulation.player.x,z:simulation.player.z}:{x:0,z:0},droid:ready?{x:simulation.droid.x,z:simulation.droid.z}:{x:0,z:0},bond:ready?simulation.bond:0,objectives:ready?{...simulation.objectives}:{token:false,escort:false,ridge:false},ridgeProgress:ready?simulation.ridgeProgress:0,freeCam,visited:ready?simulation.visitedCount:0,weapon:ready?combat.equipped:false,enemiesEnabled:ready?combat.enabled:false,shield:ready?combat.shield:100,kills:ready?combat.kills:0,enemies:ready?combat.enemies.map(e=>({id:e.id,x:e.x,z:e.z,health:e.health,state:e.state})):[],projectiles:ready?combat.projectiles.length:0,scanTime:ready?simulation.scanTime:0,frameCount,fps,p95ms:sorted[Math.floor(sorted.length*.95)]||0,drawCalls:renderer.info.render.calls,triangles:renderer.info.render.triangles,resolution:`${canvas.width}×${canvas.height}`};
 }
 window.__ashfall={snapshot};
 function frame(now:number):void{
@@ -306,16 +318,25 @@ function frame(now:number):void{
   elapsed+=dt;frameCount++;
   if(ready&&started&&rawDt>0){timings.push(rawDt*1000);if(timings.length>360)timings.shift();fps=1000/(timings.reduce((a,b)=>a+b,0)/Math.max(1,timings.length));}
   if(ready){
-    if(started&&!settings&&!mapOpen&&!emoteOpen){const input=(!freeCam&&!combat.defeated)?movement():{x:0,z:0,run:false};if(combat.defeated)simulation.cancelWalk();if((fireHeld||keys.has('Space'))&&!freeCam)shoot();accumulator=Math.min(accumulator+dt,.1);while(accumulator>=1/60){simulation.tick(1/60,input);battle.tick(1/60,simulation.player,!!getInterior(simulation.player));combat.tick(1/60,simulation.player);life.tick(1/60,simulation.player,simulation.droid,battle.joined?combat.enemies.filter(e=>e.health>0):[]);traffic.tick(1/60,[simulation.player,simulation.droid,...life.citizens]);accumulator-=1/60;}}
+    if(started&&!settings&&!mapOpen&&!emoteOpen&&!expedition?.paused){
+      const input=(!freeCam&&!combat.defeated&&!expedition?.locked)?movement():{x:0,z:0,run:false};if(combat.defeated||expedition?.boss.defeated)simulation.cancelWalk();
+      if((fireHeld||keys.has('Space'))&&!freeCam&&!expedition?.aboard)shoot();
+      accumulator=Math.min(accumulator+dt,.1);while(accumulator>=1/60){
+        if(!expedition?.aboard)simulation.tick(1/60,input);
+        if(!expedition?.suppressAmbient){battle.tick(1/60,simulation.player,!!getInterior(simulation.player));combat.tick(1/60,simulation.player);}
+        life.tick(1/60,simulation.player,simulation.droid,battle.joined?combat.enemies.filter(e=>e.health>0):[]);traffic.tick(1/60,[simulation.player,simulation.droid,...life.citizens]);
+        expedition?.tick(1/60,fireHeld);accumulator-=1/60;
+      }
+    }
     const combatEvents=combat.drainEvents();combatView.events(combatEvents);for(const event of combatEvents){if(event.type==='fire')sound.play(event.owner==='player'?'blaster':'enemy-blaster');if(event.type==='impact')sound.play('impact');if(event.type==='ally-block')sound.play('deflect');if(event.type==='enemy-down')sound.play('down');if(event.type==='player-hit'){sound.play('hit');document.querySelector('#combat-panel')?.classList.add('combat-hit');setTimeout(()=>document.querySelector('#combat-panel')?.classList.remove('combat-hit'),160);}if(event.type==='defeat')hud.note('The shield gives way','Press N to stand down. No vow ends here.',8);}
     for(const event of battle.drainEvents()){if(event.type==='saber')sound.play('saber');else hud.note(event.title,event.text,event.type==='victory'?7:5);}
     for(const event of traffic.drainEvents()){if(Math.hypot(event.x-simulation.player.x,event.z-simulation.player.z)<30){sound.play(event.type==='landing'?'ship-land':'ship-takeoff');if(!freeCam)hud.note(event.type==='landing'?'Ship arrival':'Departure clearance',`${event.name} · ${event.type==='landing'?'A traveler finds shelter.':'Another light leaves the city.'}`,4);}}
-    sound.setBattleMood(battle.phase==='skirmish'&&!simulation.interior);
+    sound.setBattleMood(!!expedition?.boss.active||!!expedition?.aboard||(battle.phase==='skirmish'&&!simulation.interior));
     if(simulation.mode==='overwatch'&&combat.enemies.some(e=>e.health>0&&Math.hypot(e.x-simulation.droid.x,e.z-simulation.droid.z)<8)&&elapsed-threatAt>7){threatAt=elapsed;hud.note('Tallow · contact','A hostile signal. I hold your flank.',4);sound.play('threat',simulation.bond);}
-    updateModels(dt);
-    if(!freeCam){const room=getInterior(simulation.player);const target=room?new THREE.Vector3(room.center.x*.7+simulation.player.x*.3-.8,.4,room.center.z*.7+simulation.player.z*.3-1):started?new THREE.Vector3(simulation.player.x-1.5,0,simulation.player.z-3):new THREE.Vector3(0,0,0);cameraTarget.lerp(target,1-Math.exp(-dt*(reducedMotion?12:3)));camera.position.lerp(cameraTarget.clone().add((room?.id==='archive'?new THREE.Vector3(12,20,-23):room?.id==='workshop'?new THREE.Vector3(-12,20,23):offset.clone()).multiplyScalar(room?.68:1)),1-Math.exp(-dt*5));camera.lookAt(cameraTarget);}
+    updateModels(dt);expedition?.frame(settings?0:dt,elapsed,started);
+    if(expedition?.applyCamera(dt,cameraTarget)){}else if(!freeCam){const room=getInterior(simulation.player);const target=room?new THREE.Vector3(room.center.x*.7+simulation.player.x*.3-.8,.4,room.center.z*.7+simulation.player.z*.3-1):started?new THREE.Vector3(simulation.player.x-1.5,0,simulation.player.z-3):new THREE.Vector3(0,0,0);cameraTarget.lerp(target,1-Math.exp(-dt*(reducedMotion?12:3)));camera.position.lerp(cameraTarget.clone().add((room?.id==='archive'?new THREE.Vector3(12,20,-23):room?.id==='workshop'?new THREE.Vector3(-12,20,23):offset.clone()).multiplyScalar(room?.68:1)),1-Math.exp(-dt*5));camera.lookAt(cameraTarget);}
     else{if(!settings&&!mapOpen){const input=movement();const shift=new THREE.Vector3(input.x,0,input.z).multiplyScalar(dt*9);orbit.target.add(shift);camera.position.add(shift);}orbit.update();cameraTarget.copy(orbit.target);}
-    interiorView.update(dt,simulation.player,simulation.droid,camera,[...combat.enemies.filter(e=>e.health>0),...(life.enabled?life.citizens:[]),...battle.guardians]);
+    const cinematicFocus=expedition?.cinematic.cameraPose()?.target;interiorView.update(dt,cinematicFocus??simulation.player,cinematicFocus??simulation.droid,camera,[...combat.enemies.filter(e=>e.health>0),...(life.enabled?life.citizens:[]),...battle.guardians]);
     populationView.update(life,battle,camera,elapsed);trafficView.update(traffic,elapsed);
     bloom.strength=.24-interiorView.blend*.10;hemi.intensity=.85-interiorView.blend*.44;rim.intensity=.9-interiorView.blend*.58;scene.environmentIntensity=.55-interiorView.blend*.23;sound.setInterior(!!simulation.interior);
     if(elapsed-lastUi>.1){updateHud();lastUi=elapsed;}

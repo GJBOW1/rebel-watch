@@ -21,6 +21,7 @@ export interface Projectile extends Vec2 {
   dz: number;
   speed: number;
   age: number;
+  damage?: number;
 }
 export interface CombatEvent extends Vec2 {
   type: 'fire' | 'impact' | 'enemy-down' | 'player-hit' | 'defeat' | 'spawn' | 'ally-block' | 'ally-hit';
@@ -103,10 +104,14 @@ function boxHit(a: Vec2, b: Vec2, x: number, z: number, hx: number, hz: number):
 export class Combat {
   enabled = false;
   equipped = false;
-  shield = 100;
+  maxShield = 100;
+  shield = this.maxShield;
   defeated = false;
   kills = 0;
   cooldown = 0;
+  weaponDamage: number = COMBAT_LIMITS.shotDamage;
+  weaponInterval: number = COMBAT_LIMITS.fireInterval;
+  weaponPellets = 1;
   enemies: CombatEnemy[] = [];
   projectiles: Projectile[] = [];
   private brains = new Map<number, EnemyBrain>();
@@ -147,7 +152,7 @@ export class Combat {
     this.projectiles = [];
     this.brains.clear();
     this.events = [];
-    this.shield = 100;
+    this.shield = this.maxShield;
     this.defeated = false;
     this.quietTime = 0;
     this.cooldown = 0;
@@ -159,7 +164,7 @@ export class Combat {
     this.projectiles = [];
     this.brains.clear();
     this.events = [];
-    this.shield = 100;
+    this.shield = this.maxShield;
     this.defeated = false;
     this.kills = 0;
     this.quietTime = 0;
@@ -229,8 +234,13 @@ export class Combat {
   fire(origin: Vec2, aimPoint: Vec2): boolean {
     if (!this.equipped || this.defeated || this.cooldown > 1e-8 || !finite(origin) || !finite(aimPoint)) return false;
     if (distance(origin, aimPoint) < 0.001 || this.projectiles.length >= COMBAT_LIMITS.projectiles) return false;
-    this.cooldown = COMBAT_LIMITS.fireInterval;
-    this.launch('player', origin, aimPoint);
+    this.cooldown = Math.max(.08, Math.min(1, Number.isFinite(this.weaponInterval) ? this.weaponInterval : COMBAT_LIMITS.fireInterval));
+    const pellets = Math.max(1, Math.min(3, Math.floor(this.weaponPellets)));
+    const angle = Math.atan2(aimPoint.x-origin.x,aimPoint.z-origin.z);
+    for(let i=0;i<pellets;i++) {
+      const spread = pellets===1?0:(i-(pellets-1)/2)*.11;
+      this.launch('player', origin, {x:origin.x+Math.sin(angle+spread)*20,z:origin.z+Math.cos(angle+spread)*20});
+    }
     return true;
   }
 
@@ -252,7 +262,7 @@ export class Combat {
     if (this.defeated) return;
     this.quietTime += dt;
     if (this.quietTime > COMBAT_LIMITS.shieldRecoveryDelay) {
-      this.shield = Math.min(100, this.shield + dt * COMBAT_LIMITS.shieldRecoveryRate);
+      this.shield = Math.min(this.maxShield, this.shield + dt * COMBAT_LIMITS.shieldRecoveryRate);
     }
     if (this.enabled) {
       for (const enemy of this.enemies) this.updateEnemy(enemy, dt, player);
@@ -358,6 +368,7 @@ export class Combat {
       id: this.nextId++, owner, x: origin.x, z: origin.z,
       dx: (aim.x - origin.x) / range, dz: (aim.z - origin.z) / range,
       speed: owner === 'player' ? COMBAT_LIMITS.playerBoltSpeed : COMBAT_LIMITS.enemyBoltSpeed,
+      damage: owner === 'player' && Number.isFinite(this.weaponDamage) ? Math.max(1,this.weaponDamage) : COMBAT_LIMITS.shotDamage,
       age: 0,
     });
     this.emit({ type: 'fire', x: origin.x, z: origin.z, owner, enemyId });
@@ -394,7 +405,7 @@ export class Combat {
       if (earliest !== null) {
         const contact = { x: bolt.x + (next.x - bolt.x) * earliest, z: bolt.z + (next.z - bolt.z) * earliest };
         this.emit({ type: 'impact', ...contact, owner: bolt.owner, enemyId: hitEnemy?.id });
-        if (hitEnemy) this.damageEnemy(hitEnemy.id, COMBAT_LIMITS.shotDamage, true);
+        if (hitEnemy) this.damageEnemy(hitEnemy.id, bolt.damage ?? COMBAT_LIMITS.shotDamage, true);
         if (hitAlly) {
           if (hitAlly.deflect) {
             hitAlly.deflections++;

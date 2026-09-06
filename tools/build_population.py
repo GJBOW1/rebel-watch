@@ -451,7 +451,7 @@ for x in [-2.55,-1.45]:
 landing_legs([(-3.02,-2.66),(3.02,-2.66),(-2.66,1.74),(2.66,1.74)],1.4)
 
 begin('landing-dock');METAL_ASSETS.add('landing-dock')
-box('Raised docking deck',(0,-.16,0),(8,.32,6),iron,.08)
+box('Raised docking deck',(0,-.225,0),(8,.32,6),iron,.08)
 for x in [-3,-1,1,3]:
     for z in [-2,-.0,2]:
         box('Deck plate',(x,-.025,z),(1.96,.05,1.96),silver if (x+z)%3 else ivory,.016)
