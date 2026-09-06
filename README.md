@@ -54,7 +54,7 @@ These are **actual, unretouched screenshots from the running game**.
 <table>
   <tr>
     <td width="50%"><img src="docs/images/rooftop-shuttle-gameplay.jpg" alt="An authored shuttle on the customs rooftop landing pad in free-camera mode."></td>
-    <td width="50%"><img src="docs/images/cantina-gameplay.jpg" alt="Inside The Still Ember cantina, talking with a local resident beside the warm bar."></td>
+    <td width="50%"><img src="docs/images/cantina-gameplay.jpg" alt="Inside The Still Ember cantina, meeting a local resident beside the warm bar."></td>
   </tr>
   <tr>
     <td align="center"><strong>Traffic above the rooftops</strong><br>Shuttles arrive, settle, and depart on their own schedules.</td>
@@ -83,7 +83,7 @@ These are **actual, unretouched screenshots from the running game**.
 **Cinder Scout · Mk. IV**<br>
 *“Still here. Still burning.”*
 
-Tallow is a small, four-legged scout with a boxy frame and a warm amber eye. It physically follows you around obstacles and through doorways. Successful interactions build trust, bringing it closer and warming its chirps.
+Tallow is a small, four-legged scout with a boxy frame and cyan optics and a warm amber core. It physically follows you around obstacles and through doorways. Successful interactions build trust, bringing it closer and warming its chirps.
 
 | Command | Tallow's response |
 | --- | --- |
@@ -118,7 +118,7 @@ Glowing terminals, Morrow's stationary salvage machine, and interior objects car
 | **M** | Open the city map and choose a district, building, or clear street to walk to. |
 | **Esc** | Quality, reduced motion, sound, music, photo capture, and reset. |
 
-The **City Activity** panel controls residents, ship traffic, requested encounters, and rooftop ship-watching. Observers are safe from crossfire. Standing down restores the peaceful exploration state.
+The **City Activity** panel controls residents, ship traffic, requested encounters, and rooftop ship-watching. Observers are safe from crossfire. Standing down returns you to protected observer mode.
 
 ## Launch from your own hangar
 
@@ -131,7 +131,9 @@ npm ci
 npm run dev
 ```
 
-Open the local URL printed by Vite, normally **http://127.0.0.1:5173/**. The authored runtime models and textures are included; Blender is only needed if you want to rebuild the art.
+Open the local URL printed by Vite, normally **http://127.0.0.1:5173/**. **127.0.0.1 means localhost: your own computer. It is a universal loopback address, not the developer’s public IP or the hosted game.** To play online, use [rebelwatch.newsfromskippy.com](https://rebelwatch.newsfromskippy.com/).
+
+The authored runtime models and textures are included; Blender is only needed if you want to rebuild the art.
 
 ```bash
 npm test       # Simulation, navigation, interiors, combat, residents, traffic, and score
