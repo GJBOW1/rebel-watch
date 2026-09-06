@@ -1,0 +1,134 @@
+{
+  "version": 1,
+  "buildings": [
+    {
+      "id": "cantina",
+      "name": "The Still Ember",
+      "buildingId": "still_ember_cantina",
+      "zone": "market",
+      "theme": "cantina",
+      "bounds": {
+        "minX": -12.3,
+        "maxX": -4.7,
+        "minZ": -42.7,
+        "maxZ": -35.5
+      },
+      "wallHeight": 4.9,
+      "door": {
+        "x": -8.1,
+        "z": -35.5,
+        "normalZ": 1,
+        "width": 2.2,
+        "outside": {
+          "x": -8.1,
+          "z": -33.9
+        },
+        "inside": {
+          "x": -8.1,
+          "z": -37.1
+        }
+      },
+      "center": {
+        "x": -8.1,
+        "z": -38.1
+      },
+      "note": "Hang your iron by the door. Every weary light has a place here.",
+      "landmarks": [
+        {
+          "id": "cantina_bar",
+          "name": "Listen to the barkeep",
+          "x": -8.1,
+          "z": -40.3,
+          "title": "A cup, before the road",
+          "text": "The keeper sets out two cups. One for you. One for the small machine. Hospitality does not ask how a heart is made."
+        }
+      ]
+    },
+    {
+      "id": "workshop",
+      "name": "Kestrel Repair House",
+      "buildingId": "wadi_machine_shop",
+      "zone": "salvage",
+      "theme": "workshop",
+      "bounds": {
+        "minX": -43.1,
+        "maxX": -35.5,
+        "minZ": -13.4,
+        "maxZ": -7.4
+      },
+      "wallHeight": 4.2,
+      "door": {
+        "x": -40.4,
+        "z": -7.4,
+        "normalZ": 1,
+        "width": 2.2,
+        "outside": {
+          "x": -40.4,
+          "z": -5.8
+        },
+        "inside": {
+          "x": -40.4,
+          "z": -9.0
+        }
+      },
+      "center": {
+        "x": -40.4,
+        "z": -10.4
+      },
+      "note": "A scar is a record of something that kept working. Set your tools beside mine.",
+      "landmarks": [
+        {
+          "id": "workshop_bench",
+          "name": "Inspect the repair bench",
+          "x": -39.0,
+          "z": -10.3,
+          "title": "The patient art of mending",
+          "text": "A scout chassis waits beneath the work lamp. Its replacement plates carry three different makers marks. The fourth will be yours."
+        }
+      ]
+    },
+    {
+      "id": "archive",
+      "name": "The Oath Archive",
+      "buildingId": "clan_archive_hall",
+      "zone": "watch",
+      "theme": "archive",
+      "bounds": {
+        "minX": 48.8,
+        "maxX": 58.8,
+        "minZ": 7.6,
+        "maxZ": 13.4
+      },
+      "wallHeight": 3.8,
+      "door": {
+        "x": 54,
+        "z": 7.6,
+        "normalZ": -1,
+        "width": 2.2,
+        "outside": {
+          "x": 54,
+          "z": 6
+        },
+        "inside": {
+          "x": 54,
+          "z": 9.2
+        }
+      },
+      "center": {
+        "x": 53.1,
+        "z": 10.5
+      },
+      "note": "No crowns are kept here. Only names, and the roads they left open.",
+      "landmarks": [
+        {
+          "id": "archive_table",
+          "name": "Read the star ledger",
+          "x": 53.7,
+          "z": 11,
+          "title": "A map of those who returned",
+          "text": "Blue marks name the roads still open. Amber marks name their keepers. One unmarked light waits at the edge of the chart."
+        }
+      ]
+    }
+  ]
+}

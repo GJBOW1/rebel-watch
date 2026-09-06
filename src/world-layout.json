@@ -1,0 +1,222 @@
+{
+  "version": 2,
+  "districts": [
+    {
+      "id": "courtyard",
+      "name": "The Ninth Courtyard",
+      "bounds": {
+        "minX": -13.4,
+        "maxX": 13.4,
+        "minZ": -11.4,
+        "maxZ": 11.4
+      },
+      "center": {
+        "x": 0,
+        "z": 0
+      },
+      "note": "Rain keeps no banners. Keep your small light close."
+    },
+    {
+      "id": "passage",
+      "name": "The Sundered Line",
+      "bounds": {
+        "minX": 13,
+        "maxX": 25.5,
+        "minZ": -2.6,
+        "maxZ": 2.6
+      },
+      "center": {
+        "x": 19,
+        "z": 0
+      },
+      "note": "A narrow road is still a road. Let no small light fall behind."
+    },
+    {
+      "id": "ridge",
+      "name": "Emberwatch Ridge",
+      "bounds": {
+        "minX": 25,
+        "maxX": 29.5,
+        "minZ": -5.5,
+        "maxZ": 5.5
+      },
+      "center": {
+        "x": 27,
+        "z": 0
+      },
+      "note": "Hold until the last warm light. Some promises need only presence."
+    },
+    {
+      "id": "market",
+      "name": "Lantern Exchange",
+      "bounds": {
+        "minX": -14.6,
+        "maxX": 14.6,
+        "minZ": -43.6,
+        "maxZ": -15.4
+      },
+      "center": {
+        "x": 0,
+        "z": -28
+      },
+      "note": "Trade your iron. Keep your word. The market remembers both."
+    },
+    {
+      "id": "salvage",
+      "name": "The Iron Wadi",
+      "bounds": {
+        "minX": -44.6,
+        "maxX": -16.4,
+        "minZ": -14.6,
+        "maxZ": 14.6
+      },
+      "center": {
+        "x": -29,
+        "z": 0
+      },
+      "note": "Nothing here is useless. Some things are only waiting for a second oath."
+    },
+    {
+      "id": "landing",
+      "name": "Cinder Landing",
+      "bounds": {
+        "minX": -14.6,
+        "maxX": 14.6,
+        "minZ": 15.4,
+        "maxZ": 43.6
+      },
+      "center": {
+        "x": 0,
+        "z": 21
+      },
+      "note": "Every ship carries a leaving. Every lantern offers a return."
+    },
+    {
+      "id": "watch",
+      "name": "The Far Watch",
+      "bounds": {
+        "minX": 33.5,
+        "maxX": 61.7,
+        "minZ": -14.6,
+        "maxZ": 14.6
+      },
+      "center": {
+        "x": 46,
+        "z": 0
+      },
+      "note": "Past the ridge, the old sentries still face the long dark."
+    }
+  ],
+  "connections": [
+    {
+      "id": "north_link",
+      "from": "courtyard",
+      "to": "market",
+      "minX": -2.8,
+      "maxX": 2.8,
+      "minZ": -16.2,
+      "maxZ": -10.5
+    },
+    {
+      "id": "west_link",
+      "from": "courtyard",
+      "to": "salvage",
+      "minX": -17.2,
+      "maxX": -12.5,
+      "minZ": -2.8,
+      "maxZ": 2.8
+    },
+    {
+      "id": "south_link",
+      "from": "courtyard",
+      "to": "landing",
+      "minX": -2.8,
+      "maxX": 2.8,
+      "minZ": 10.5,
+      "maxZ": 16.2
+    },
+    {
+      "id": "east_link",
+      "from": "ridge",
+      "to": "watch",
+      "minX": 28.5,
+      "maxX": 34.2,
+      "minZ": -2.8,
+      "maxZ": 2.8
+    }
+  ],
+  "landmarks": [
+    {
+      "id": "terminal",
+      "name": "Read the relay",
+      "x": 22,
+      "z": 0,
+      "title": "A vow, left in the relay",
+      "text": "The child passed east. We lit every lantern. If you come after us, keep them burning. \u2014 Relay keeper, ninth watch"
+    },
+    {
+      "id": "machine",
+      "name": "Watch Morrow",
+      "x": 8,
+      "z": -7,
+      "title": "Morrow \u00b7 rain condenser",
+      "text": "It counts each drop as if the desert were still listening. A patient machine. An older kind of courage."
+    },
+    {
+      "id": "ship",
+      "name": "Inspect the Wayward Bell",
+      "x": 6.5,
+      "z": 28,
+      "title": "The Wayward Bell",
+      "text": "Three mismatched engines. One faithful hull. Her captain leaves a lamp in every port."
+    },
+    {
+      "id": "oathboard",
+      "name": "Read the oath board",
+      "x": 7.5,
+      "z": -28,
+      "title": "No price for the lost",
+      "text": "Bring back the missing. Take no coin from the mourning. Some contracts are older than money."
+    },
+    {
+      "id": "cantina",
+      "name": "Listen at the Still Ember",
+      "x": -8,
+      "z": -35,
+      "title": "The Still Ember",
+      "text": "Pilots speak softly here. The barkeep keeps their names, and never their debts."
+    },
+    {
+      "id": "engine",
+      "name": "Examine the fallen drive",
+      "x": -31,
+      "z": -5,
+      "title": "A heart without a hull",
+      "text": "The drive outlived its ship. The salvagers have given it a gentler duty: warmth."
+    },
+    {
+      "id": "crawler",
+      "name": "Inspect the sand crawler",
+      "x": -26,
+      "z": 8,
+      "title": "The patient caravan",
+      "text": "It moves one valley a year. Nothing that it carries is ever abandoned."
+    },
+    {
+      "id": "beacon",
+      "name": "Attend the watch beacon",
+      "x": 47,
+      "z": -6,
+      "title": "The far lantern",
+      "text": "A light is a promise made to someone you may never meet."
+    },
+    {
+      "id": "archive",
+      "name": "Read the clan archive",
+      "x": 54,
+      "z": 7,
+      "title": "The iron remembers",
+      "text": "We inherit no throne. Only tools, names, and the duty to leave a road behind us."
+    }
+  ]
+}

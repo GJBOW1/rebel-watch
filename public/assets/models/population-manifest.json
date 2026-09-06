@@ -1,0 +1,358 @@
+{
+  "version": 1,
+  "coordinateSystem": "+Z forward, Y up, feet or landing contact Y=0",
+  "assets": {
+    "citizen-human": {
+      "triangles": 2126,
+      "draws": 6,
+      "bounds": {
+        "minX": -0.4050000011920929,
+        "maxX": 0.4050000011920929,
+        "minY": 0.0,
+        "maxY": 1.809999942779541,
+        "minZ": -0.32499998807907104,
+        "maxZ": 0.2574999928474426
+      },
+      "joints": {
+        "Actor_Body": [
+          0,
+          0,
+          0
+        ],
+        "Actor_Leg_L": [
+          -0.13,
+          0.91,
+          0
+        ],
+        "Actor_Arm_L": [
+          -0.3,
+          1.39,
+          0
+        ],
+        "Actor_Leg_R": [
+          0.13,
+          0.91,
+          0
+        ],
+        "Actor_Arm_R": [
+          0.3,
+          1.39,
+          0
+        ],
+        "Actor_Head": [
+          0,
+          1.47,
+          0
+        ]
+      }
+    },
+    "citizen-twilek": {
+      "triangles": 2268,
+      "draws": 6,
+      "bounds": {
+        "minX": -0.4050000011920929,
+        "maxX": 0.4050000011920929,
+        "minY": 0.0,
+        "maxY": 1.86575448513031,
+        "minZ": -0.32499998807907104,
+        "maxZ": 0.2574999928474426
+      },
+      "joints": {
+        "Actor_Body": [
+          0,
+          0,
+          0
+        ],
+        "Actor_Leg_L": [
+          -0.13,
+          0.91,
+          0
+        ],
+        "Actor_Arm_L": [
+          -0.3,
+          1.39,
+          0
+        ],
+        "Actor_Leg_R": [
+          0.13,
+          0.91,
+          0
+        ],
+        "Actor_Arm_R": [
+          0.3,
+          1.39,
+          0
+        ],
+        "Actor_Head": [
+          0,
+          1.47,
+          0
+        ]
+      }
+    },
+    "stormtrooper": {
+      "triangles": 3282,
+      "draws": 6,
+      "bounds": {
+        "minX": -0.47456058859825134,
+        "maxX": 0.47456058859825134,
+        "minY": 0.0,
+        "maxY": 1.8309999704360962,
+        "minZ": -0.2800000011920929,
+        "maxZ": 0.25202760100364685
+      },
+      "joints": {
+        "Actor_Body": [
+          0,
+          0,
+          0
+        ],
+        "Actor_Leg_L": [
+          -0.137,
+          0.864,
+          0
+        ],
+        "Actor_Arm_L": [
+          -0.323,
+          1.398,
+          0
+        ],
+        "Actor_Leg_R": [
+          0.137,
+          0.864,
+          0
+        ],
+        "Actor_Arm_R": [
+          0.323,
+          1.398,
+          0
+        ],
+        "Actor_Head": [
+          0,
+          1.485,
+          0
+        ]
+      }
+    },
+    "jedi": {
+      "triangles": 2596,
+      "draws": 9,
+      "bounds": {
+        "minX": -0.4050000011920929,
+        "maxX": 0.4050000011920929,
+        "minY": 0.0,
+        "maxY": 2.0290000438690186,
+        "minZ": -0.27799999713897705,
+        "maxZ": 0.2574999928474426
+      },
+      "joints": {
+        "Actor_Body": [
+          0,
+          0,
+          0
+        ],
+        "Actor_Leg_L": [
+          -0.13,
+          0.91,
+          0
+        ],
+        "Actor_Arm_L": [
+          -0.3,
+          1.39,
+          0
+        ],
+        "Actor_Leg_R": [
+          0.13,
+          0.91,
+          0
+        ],
+        "Actor_Arm_R": [
+          0.3,
+          1.39,
+          0
+        ],
+        "Actor_Head": [
+          0,
+          1.47,
+          0
+        ],
+        "Actor_Cloak": [
+          0,
+          1.395,
+          -0.12
+        ],
+        "Saber_Hilt": [
+          0.32,
+          0.8,
+          0.14
+        ],
+        "Saber_Blade": [
+          0.32,
+          1.043,
+          0.16
+        ]
+      }
+    },
+    "droid-protocol": {
+      "triangles": 2508,
+      "draws": 7,
+      "bounds": {
+        "minX": -0.37038907408714294,
+        "maxX": 0.37038907408714294,
+        "minY": 0.0,
+        "maxY": 1.8020000457763672,
+        "minZ": -0.13600000739097595,
+        "maxZ": 0.22599999606609344
+      },
+      "joints": {
+        "Actor_Body": [
+          0,
+          0,
+          0
+        ],
+        "Actor_Leg_L": [
+          -0.102,
+          0.88,
+          0
+        ],
+        "Actor_Arm_L": [
+          -0.268,
+          1.396,
+          0
+        ],
+        "Actor_Leg_R": [
+          0.102,
+          0.88,
+          0
+        ],
+        "Actor_Arm_R": [
+          0.268,
+          1.396,
+          0
+        ],
+        "Actor_Head": [
+          0,
+          1.45,
+          0
+        ]
+      }
+    },
+    "droid-astromech": {
+      "triangles": 2178,
+      "draws": 6,
+      "bounds": {
+        "minX": -0.5059999823570251,
+        "maxX": 0.5059999823570251,
+        "minY": 0.0,
+        "maxY": 1.0180000066757202,
+        "minZ": -0.2849999964237213,
+        "maxZ": 0.39399999380111694
+      },
+      "joints": {
+        "Actor_Body": [
+          0,
+          0,
+          0
+        ],
+        "Actor_Leg_L": [
+          -0.272,
+          0.663,
+          0
+        ],
+        "Actor_Leg_R": [
+          0.272,
+          0.663,
+          0
+        ],
+        "Actor_Head": [
+          0,
+          0.764,
+          0
+        ]
+      }
+    },
+    "shuttle": {
+      "triangles": 4952,
+      "draws": 5,
+      "bounds": {
+        "minX": -3.880000114440918,
+        "maxX": 3.880000114440918,
+        "minY": 0.0,
+        "maxY": 3.085753917694092,
+        "minZ": -2.7799999713897705,
+        "maxZ": 3.2200000286102295
+      },
+      "joints": {
+        "Ship_Hull": [
+          0,
+          0,
+          0
+        ],
+        "Engine_L": [
+          -1.65,
+          1.82,
+          -2.76
+        ],
+        "Engine_R": [
+          1.65,
+          1.82,
+          -2.76
+        ]
+      }
+    },
+    "freighter": {
+      "triangles": 9242,
+      "draws": 6,
+      "bounds": {
+        "minX": -4.625,
+        "maxX": 4.625,
+        "minY": 0.0,
+        "maxY": 3.7060000896453857,
+        "minZ": -4.315000057220459,
+        "maxZ": 3.871999979019165
+      },
+      "joints": {
+        "Ship_Hull": [
+          0,
+          0,
+          0
+        ],
+        "Engine_L": [
+          -2.3,
+          1.98,
+          -4.22
+        ],
+        "Engine_R": [
+          2.3,
+          1.98,
+          -4.22
+        ]
+      }
+    },
+    "landing-dock": {
+      "triangles": 3124,
+      "draws": 2,
+      "bounds": {
+        "minX": -4.0,
+        "maxX": 4.0,
+        "minY": -3.200000047683716,
+        "maxY": 0.3019999861717224,
+        "minZ": -3.0,
+        "maxZ": 3.0
+      },
+      "joints": {
+        "Ship_Hull": [
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "texture": "population-alloy.png",
+  "notes": {
+    "jedi": "Saber_Blade and Saber_Hilt are children of the right arm; hide Saber_Blade outside combat. The arm is vertical in bind pose; blade extends +Y.",
+    "stormtrooper": "Unarmed hands by default; attach existing blaster at right shoulder-relative (0,-0.60,0.10).",
+    "ships": "Engine_L and Engine_R pivots are world-relative in this manifest and local relative to model root in glTF."
+  }
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111817" />
+    <meta name="description" content="Explore a rain-soaked Rebel outpost with your droid companion, living streets, ship traffic and optional battles." />
+    <title>Rebel Watch — The Ember Outpost</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <canvas id="game" tabindex="0" aria-label="Rebel Watch exploration scene. Move with WASD or arrow keys. Press E to interact." aria-describedby="movement-help"></canvas>
+    <div class="screen-grain" aria-hidden="true"></div>
+
+    <div id="hud" class="hud">
+      <header class="world-header">
+        <div class="wordmark">
+          <svg class="clan-mark" viewBox="0 0 34 42" fill="none" aria-label="The ember oath clan mark" role="img"><path d="M5 32 13 5h4L9 32H5Zm10 5 8-27h4l-8 27h-4Zm10-6 4-14h4l-4 14h-4Z" fill="currentColor"/><path d="m3 36 14 5 14-5" stroke="currentColor" stroke-width="1"/></svg>
+          <div><h1>REBEL WATCH</h1><div class="creed">THE EMBER OUTPOST</div></div>
+        </div>
+        <div class="location-lockup"><span class="location-index">09</span><div><h2 id="location-name">The Ninth Courtyard</h2><p><span id="world-time">17:42</span><span class="weather-dot">·</span><span id="weather-label">RAIN RECEDED</span><span class="weather-dot">·</span><span class="weather-temp">08°</span></p></div></div>
+      </header>
+
+      <section id="field-note" class="field-note" aria-live="polite" aria-atomic="true" hidden>
+        <div class="eyebrow field-note-label"><span class="note-rule"></span>FIELD NOTE<span class="note-rule"></span></div>
+        <h2 id="field-note-title"></h2><p id="field-note-text"></p><div class="note-timer" aria-hidden="true"><span></span></div>
+      </section>
+
+      <aside class="signal-panel" aria-label="Local map and objectives">
+        <div class="signal-heading"><span class="eyebrow">LOCAL SIGNAL</span><span class="signal-strength" aria-label="Signal strong"><i></i><i></i><i></i><i></i></span><span class="compass">N ↑</span></div>
+        <div class="map-frame" title="Open city map [M]"><canvas id="minimap" width="240" height="180" aria-label="Local minimap showing your position, Tallow, paths and objectives"></canvas><span class="map-corner tl"></span><span class="map-corner tr"></span><span class="map-corner bl"></span><span class="map-corner br"></span><span class="map-scale">CITY / M</span></div>
+        <div class="map-caption"><span class="map-dot"></span><span id="map-zone">THE NINTH COURTYARD</span><span class="signal-frequency">89.4</span></div>
+        <section class="objectives" aria-labelledby="objectives-label">
+          <div class="objectives-heading"><h2 id="objectives-label" class="eyebrow">AN OATH, IN THREE PARTS</h2><span id="objective-count">0 / 3</span></div>
+          <ol>
+            <li id="objective-token"><span class="objective-check" aria-hidden="true"></span><span>Recover the foundling token<small>Something small. Someone’s whole world.</small></span></li>
+            <li id="objective-escort"><span class="objective-check" aria-hidden="true"></span><span>Escort Tallow through the gate<small>Leave no ember behind.</small></span></li>
+            <li id="objective-ridge"><span class="objective-check" aria-hidden="true"></span><span>Hold the ridge until dusk<small id="ridge-hint">Find the watchline beyond the passage.</small><span class="ridge-track" id="ridge-track" hidden><i id="ridge-fill"></i></span></span></li>
+          </ol>
+        </section>
+      </aside>
+
+      <section class="companion-panel" aria-labelledby="companion-name">
+        <div class="companion-topline"><span class="eyebrow">ACTIVE COMPANION</span><span class="linked-dot"></span><span class="linked-label">LINKED</span></div>
+        <div class="companion-main">
+          <div class="portrait-frame"><img id="portrait" alt="Tallow, a small boxy scout droid with an amber core" /><svg id="portrait-fallback" viewBox="0 0 100 100" aria-hidden="true"><path d="M29 32 65 24l20 13v35L48 82 29 67V32Z" fill="#536867" stroke="#81938b"/><path d="m29 32 20 15 36-10M49 47v35" stroke="#9bad9e" fill="none"/><path d="m54 53 23-6v15l-23 6V53Z" fill="#edb669"/><path d="m23 48-7 6v25l13-4V48ZM80 66l8-2v14l-11 3" fill="#465652" stroke="#8e9c88"/><path d="m36 82-10 4v5l23-3v-5m23-2 5 6 13-4v-6" fill="#8a8e7a"/><path d="M62 24V14m-4 0h8" stroke="#cfbb8e" stroke-width="2"/></svg><span class="portrait-cross" aria-hidden="true">+</span></div>
+          <div class="companion-identity"><h2 id="companion-name">Tallow</h2><p class="companion-role">CINDER SCOUT · MK. IV</p><div class="companion-status"><span id="status-dot"></span><span id="companion-status">Following</span></div><p class="companion-flavor">“Still here. Still burning.”</p></div>
+        </div>
+        <div class="bond-label"><span>BOND</span><span id="bond-value">18<span> / 100</span></span></div>
+        <div id="bond-meter" class="bond-meter" role="progressbar" aria-label="Bond with Tallow" aria-valuemin="0" aria-valuemax="100" aria-valuenow="18"><div id="bond-fill"></div><span></span><span></span><span></span></div>
+        <div class="companion-commands" aria-label="Companion commands"><button data-command="call" title="Call Tallow closer"><kbd>F</kbd>Call</button><button data-command="stay" title="Ask Tallow to hold position"><kbd>X</kbd>Stay</button><button data-command="scan" title="Scan nearby objects"><kbd>V</kbd>Scan</button><button data-command="overwatch" title="Watch for nearby patrols"><kbd>Q</kbd>Overwatch</button><button data-command="emote" title="Open companion emotes"><kbd>R</kbd>Emote</button></div>
+      </section>
+
+      <div id="interact-prompt" class="interact-prompt" hidden><kbd>E</kbd><div><span class="eyebrow">INTERACT</span><strong id="prompt-title"></strong><small id="prompt-detail"></small></div><span class="prompt-diamond" aria-hidden="true">◇</span></div>
+
+      <footer class="bottom-bar">
+        <div id="movement-help" class="movement-help"><span><kbd>W A S D</kbd><span class="arrow-hint"> / ↑←↓→</span> Move</span><span><span id="walk-help"><span class="mouse-icon" aria-hidden="true"></span> Click to walk</span><span id="weapon-help" hidden>Click / Space fire</span></span><span><kbd>SHIFT</kbd> Haste</span><span><kbd>E</kbd> Interact</span></div>
+        <div class="utility-controls"><button id="map-button" aria-label="Open city map"><span>City map</span><kbd>M</kbd></button><button data-action="camera" id="camera-button" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h4l1-2h4l1 2h4v10H3V6Z"/><circle cx="10" cy="10.5" r="2.5"/></svg><span>Camera</span><kbd>C</kbd></button><button data-action="sound" id="sound-button" aria-pressed="true" aria-label="Toggle sound"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m3 8 4 0 4-4v12l-4-4H3V8Zm11-2c3 2 3 6 0 8m-1-6c1 1 1 3 0 4"/></svg><span>Sound</span></button><button data-action="settings" aria-label="Open settings"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 5h12M4 10h12M4 15h12M7 3v4m6 1v4m-5 1v4"/></svg><span>Settings</span><kbd>ESC</kbd></button></div>
+      </footer>
+      <div class="field-kit"><button id="equip-button" aria-pressed="false"><kbd>B</kbd><span id="equip-label">Draw blaster</span></button><button id="enemies-button" aria-pressed="false"><kbd>N</kbd><span id="enemies-label">Enemies off</span></button><button id="interior-exit" hidden><span>↗</span> Return to street</button><span id="district-count">1 / 7 districts</span></div>
+      <details id="city-activity" class="city-activity glass-panel"><summary><span class="live-pip"></span> CITY ACTIVITY <span>⌄</span></summary><div class="activity-content"><p id="life-status"></p><p id="traffic-status"></p><p id="battle-status"></p><div class="activity-toggles"><label><input id="residents-toggle" type="checkbox" checked /> Residents</label><label><input id="traffic-toggle" type="checkbox" checked /> Ships</label></div><div class="activity-actions"><button id="join-battle" aria-pressed="false">J · Join against troopers</button><button id="encounter-button">Jedi encounter</button><button id="traffic-watch">Watch the skyport</button><button id="traffic-arrival">Request arrival</button></div><small>E to speak with residents. Patrols ignore you until you join or hit a trooper. N clears all combat.</small></div></details>
+      <section id="combat-panel" class="combat-panel glass-panel" aria-label="Blaster and shield status" hidden><span class="eyebrow" id="combat-title">BLASTER READY</span><p id="combat-hint">Mouse aim · Click / Space fire · B holster</p><div class="shield-label">WARD SHIELD <span id="shield-value">100%</span></div><div id="shield-meter" class="shield-track" role="progressbar" aria-label="Ward shield" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><span id="shield-fill"></span></div><p id="enemy-count">Quiet streets</p><button id="combat-recover" hidden>Stand down · restore shield</button></section>
+      <span id="fps" class="fps" title="Measured frames per second">— FPS</span>
+
+      <section id="free-camera" class="free-camera glass-panel" aria-labelledby="free-camera-title" hidden><div class="panel-heading"><span class="eyebrow" id="free-camera-title">FREE CAMERA</span><span class="live-pip"></span></div><div class="camera-modes"><button data-camera="orbit" class="selected">Orbit</button><button data-camera="pan">Pan</button><button data-camera="recenter">Recenter <kbd>R</kbd></button></div><dl class="camera-help"><div><dt>DRAG</dt><dd>Orbit the courtyard</dd></div><div><dt>SHIFT + DRAG</dt><dd>Pan</dd></div><div><dt>SCROLL</dt><dd>Zoom in / out</dd></div><div><dt>W A S D</dt><dd>Pan the view</dd></div></dl><button class="camera-return" data-action="camera"><kbd>C</kbd>Return to journey<span>↗</span></button></section>
+
+      <section id="emote-wheel" class="emote-wheel glass-panel" role="dialog" aria-modal="false" aria-labelledby="emote-title" hidden><div class="panel-heading"><span class="eyebrow" id="emote-title">A SMALL UNDERSTANDING</span><button id="emote-close" class="icon-close" aria-label="Close emote menu">×</button></div><div class="emote-options"><button data-emote="salute"><span class="emote-glyph">↗</span><strong>Salute</strong><small>Oath remembered</small><kbd>1</kbd></button><button data-emote="spin"><span class="emote-glyph">↻</span><strong>Spin</strong><small>A little joy</small><kbd>2</kbd></button><button data-emote="growl"><span class="emote-glyph">≋</span><strong>Warning growl</strong><small>Not one step closer</small><kbd>3</kbd></button><button data-emote="chirp"><span class="emote-glyph">✧</span><strong>Proud chirp</strong><small>Good little ember</small><kbd>4</kbd></button></div><p class="emote-footnote">Choose a gesture<span><kbd>R</kbd>Close</span></p></section>
+    </div>
+
+    <div id="city-map" class="modal-backdrop" hidden><section class="city-map-dialog glass-panel" role="dialog" aria-modal="true" aria-labelledby="city-map-title"><div class="panel-heading"><span class="eyebrow">THE ASHEN REACH / FIELD CARTOGRAPHY</span><button id="city-map-close" class="icon-close" aria-label="Close city map">×</button></div><h2 id="city-map-title">Seven lights. One city.</h2><p id="city-discovery">1 of 7 districts explored</p><canvas id="city-map-canvas" width="780" height="580" aria-label="City map. Click a clear street to walk there."></canvas><div id="district-destinations" aria-label="District destinations"></div><div class="building-heading"><span class="eyebrow">OPEN DOORS</span><span id="interior-count">0 / 3 interiors</span></div><div id="building-destinations" aria-label="Building destinations"></div><p class="city-map-help">Choose a building, district, or clear street to walk there. Tallow follows the whole way. <kbd>M</kbd> Close</p></section></div>
+    <div id="settings" class="modal-backdrop" hidden><section class="settings-dialog glass-panel" role="dialog" aria-modal="true" aria-labelledby="settings-title"><div class="panel-heading"><span class="eyebrow">FIELD EQUIPMENT</span><button id="settings-close" class="icon-close" aria-label="Close settings">×</button></div><h2 id="settings-title">Make yourself at home.</h2><p class="settings-intro">The courtyard will wait.</p><label class="setting-row" for="quality"><span>Lighting quality<small>Reflections, shadows & atmosphere</small></span><select id="quality"><option value="high">High</option><option value="balanced">Balanced</option></select></label><label class="setting-row" for="reduced-motion"><span>Reduced motion<small>Quiet camera and interface transitions</small></span><input type="checkbox" id="reduced-motion" /></label><label class="setting-row volume-setting" for="volume"><span>Sound volume<small>Rain, footsteps & a small warm voice</small></span><input type="range" id="volume" min="0" max="100" value="55" aria-label="Sound volume" /></label><label class="setting-row" for="music-toggle"><span>Background score<small>Quiet strings, horns and distant stars</small></span><input id="music-toggle" type="checkbox" checked /></label><label class="setting-row volume-setting" for="music-volume"><span>Music volume</span><input id="music-volume" type="range" min="0" max="100" value="45" aria-label="Music volume" /></label><div class="settings-actions"><button id="photo-button" class="outline-button">Capture a memory<span>↗</span></button><button id="reset-button" class="quiet-button">Begin the journey again</button></div><p class="settings-footer"><kbd>ESC</kbd>Return to the courtyard<span>REBEL WATCH · 01</span></p></section></div>
+
+    <div id="intro" class="intro-overlay"><section class="intro-card" aria-labelledby="intro-title"><span class="intro-coordinate">OUTPOST 09 / THE ASHEN REACH</span><svg class="intro-mark" viewBox="0 0 34 42" fill="none" aria-hidden="true"><path d="M5 32 13 5h4L9 32H5Zm10 5 8-27h4l-8 27h-4Zm10-6 4-14h4l-4 14h-4Z" fill="currentColor"/><path d="m3 36 14 5 14-5" stroke="currentColor" stroke-width="1"/></svg><h2 id="intro-title">REBEL WATCH</h2><div class="intro-subtitle">THE EMBER OUTPOST</div><div class="intro-rule"></div><p>Beyond the Empire’s reach, hope keeps watch.<br />Keep the small light beside you.</p><button id="start-button" class="start-button" disabled><span id="start-label">Preparing the courtyard</span><span id="start-icon" aria-hidden="true">···</span></button><p id="loading-detail" class="intro-hint">WASD to wander <span>·</span> E to listen <span>·</span> F to call Tallow</p><span class="intro-version">A REBELLION ON THE FRONTIER</span></section></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

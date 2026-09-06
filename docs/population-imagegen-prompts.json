@@ -1,0 +1,16 @@
+{
+  "builtIn": true,
+  "texture": {
+    "prompt": "Generate a seamless tileable PBR base-color albedo texture, square, evenly lit flat orthographic surface scan with absolutely no shadows, no specular highlights, no perspective, no objects and no text. Material: neutral warm pale gray worn ceramic-coated spaceship alloy, mostly quiet subtly mottled enamel, occasional fine linear scratches, a few hairline seams and isolated tiny dark chips. The texture must work on small character armor and spacecraft hull panels; make all detail subtle and tiny, keep overall average near RGB 205,201,188, avoid large dark patches, avoid thick borders, no ambient occlusion. Crisp premium physically plausible material. No logos.",
+    "generated": "2026-09-05",
+    "destination": "public/assets/textures/population-alloy.png"
+  },
+  "ships": {
+    "prompt": "Premium HD voxel 3D concept art of two small, rugged landing ships parked on wet stone in a lived-in space-western courtyard. One compact utility shuttle, about eight meters long, angular forward cockpit, twin large cylindrical rear engines, short straight wings, deployed landing feet. One broad twelve meter cargo freighter, asymmetrical forward cockpit, battered cream ceramic hull panels, rust-red repairs, broad stern with a cyan engine strip, vents, antenna and deployed landing struts. No people, no guns, no text or logos. Original plausible spacecraft with layered industrial detail, deliberately hand-built beveled rectangular geometry, realistic PBR metals, wet reflections, ochre outpost buildings behind them, rainy dusk, warm lantern side light and cold cyan ambient. Three-quarter elevated isometric view, both ships separated with unobstructed silhouettes. Strong premium real-time game art quality, not toy-like.",
+    "destination": "public/assets/concepts/living-ships-target.png"
+  },
+  "characterConcept": {
+    "status": "Two built-in attempts returned output safety-system errors; neither produced an image. Geometry uses viewed official appearance references and original authored mesh work.",
+    "lastPrompt": "A high-quality stylized 3D modeling reference sheet: six separated full-body Star Wars characters standing peacefully in neutral poses, from left to right a human mechanic in an ochre work jacket, a teal Twi'lek courier with two long headtails, a gold humanoid protocol droid, a small red and white domed astromech, a classic white-armored stormtrooper, and an anonymous adult Jedi wearing a cream tunic and brown robe and carrying an unlit lightsaber hilt. Beveled blocky low-poly / HD voxel geometry, physically believable light and materials, attractive stylized proportions, neutral dark background, warm key light and cool fill, clear readable silhouettes. No violence or combat, no text or logos."
+  }
+}

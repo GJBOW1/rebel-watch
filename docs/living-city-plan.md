@@ -1,0 +1,9 @@
+# Living city — done rubric
+
+User explicitly updated the original-design restriction on5September2026: recognizable Star Wars stormtroopers and Jedi are requested. All new meshes are authored locally in Blender, with generated concept/material images and cited official appearance references. Original ASHFALL player/Tallow, seven districts and enterable buildings remain.
+
+1. A varied visible population of walking humanoid civilians and recognizable space-opera droids has collision-safe routes, distinct readable silhouettes, and E conversations. NPCs stop/face the player during conversation, resume walking, and never block the player's/Tallow's normal routes.
+2. At least two authored ships visibly approach, land safely, remain briefly, lift off and depart in repeatable traffic cycles near the city; landing is deferred if the landing area is occupied. Readable thruster/landing effects and controls expose the activity.
+3. Stormtroopers visibly patrol. Occasionally two Jedi arrive and fight them using visible sabers, defensive effects and blaster exchanges. The player can spectate without damage or deliberately join against the troopers; joining, winning/losing and disabling encounters complete cleanly. Existing blaster and companion behavior remains functional.
+4. Original gentle cinematic instrumental music plays after user audio activation, has independent music mute/volume, respects master sound mute/volume, and pauses/resumes without duplicated audio sources. No downloaded franchise score or copied melody is used.
+5. Build and meaningful real-world navigation/combat/traffic/audio checks pass; runtime screenshots, live interaction/flight/battle evidence and measured frame-time limits are saved and independently reviewed. Art is researched, modeled in Blender, and visually iterated in the actual engine.
