@@ -79,7 +79,7 @@ At this checkpoint:
 - Browser save/reload: **passed** for complete main/side progress, inventory, equipment, resources and shield upgrade.
 - Final camera/flight and rooftop cycle: **passed in the browser** after the camera and geometry corrections.
 - Exact public-release smoke: **passed**; served HTML and JavaScript match the final package.
-- Repository automation: [GitHub Flight checks](https://github.com/GJBOW1/rebel-watch/actions/workflows/checks.yml) runs the test suite and production build for pushes and pull requests; consult its run for the matching commit’s status.
+- Repository automation: [Flight checks passed for expansion commit 0889ad3](https://github.com/GJBOW1/rebel-watch/actions/runs/34012417809), including dependency installation, the test suite and production build. The workflow runs again for subsequent commits.
 
 ## Public release and package audit
 
@@ -97,13 +97,14 @@ Measurements below are rolling samples on the development machine from local and
 | --- | --- | --- |
 | Public campaign cinematic | **53.73 FPS / 25.2 ms p95** | Foreground public browser at High quality, 2268×1294 framebuffer, running the deployed campaign cinematic. |
 | Public Balanced setting | **54.62 FPS / 25.0 ms p95** | Foreground public browser at Balanced quality, 1512×863 framebuffer. High quality was restored after the check. |
+| Public High setting after closing duplicate playtest | **76.19 FPS / 17.2 ms p95** | High quality, 2268×1294 framebuffer. The earlier local Chrome game instance was closed before this sample; campaign saves were retained. |
 | Final player-flight camera | **113.05 FPS / 16.5 ms p95**, then **73.34 FPS / 17.6 ms p95** | Two fresh samples after the final camera/crane changes; High quality, 2061×1176 framebuffer. |
 | Corrected rooftop traffic | **66.06 FPS / 18.1 ms p95**, then **69.79 FPS / 17.8 ms p95** | Two fresh samples during the final roof review at the same quality and resolution. |
 | Earlier player flight | 14 samples; **80.30–119.99 FPS**, sampled p95 frame times **9.7–17.7 ms** | Recorded before the final flight-camera adjustment; retained as earlier evidence only. |
 | Vader encounter | **69.9 FPS**, **25.1 ms p95** frame time | One reported combat sample; the p95 indicates some frames exceeded a 60 FPS frame budget. |
 | Ground travel | Approximately **67–100 FPS** | Walkthrough observations, not an exhaustive district-by-district benchmark. |
 
-These are short rolling observations. Several p95 values exceed the 16.67 ms frame budget for 60 FPS, and both public quality-setting samples averaged below 60 FPS. The measurements do not establish a global or per-frame 60 FPS minimum. Earlier living-city samples are retained in the [previous report](verification-living-city.md) and are not substituted for expanded-campaign results.
+These are short rolling observations. The initial public samples were collected while the duplicate local playtest was also running; closing that instance was followed by the higher public High-quality sample above. Several p95 values exceed the 16.67 ms frame budget for 60 FPS. The measurements do not establish a global or per-frame 60 FPS minimum. Earlier living-city samples are retained in the [previous report](verification-living-city.md) and are not substituted for expanded-campaign results.
 
 ## Repository checks
 

@@ -28,6 +28,8 @@ The public showcase baseline is commit `2cf9de4`, with 84 passing tests and succ
 
 The [GitHub Flight checks workflow](https://github.com/GJBOW1/rebel-watch/actions/workflows/checks.yml) records the test and build result for each pushed commit.
 
+Expansion commit **0889ad3** is pushed to the public repository and [its Flight checks passed](https://github.com/GJBOW1/rebel-watch/actions/runs/34012417809). A further public High-quality sample after closing the duplicate local playtest measured **76.19 FPS / 17.2 ms p95** at 2268×1294; the verification report retains the earlier concurrent-session samples for context.
+
 ## Isolation and integration
 
 World/art, story/combat simulation and flight simulation/view were authored in separate worktrees. Root owns runtime integration, journal/cutscene UI, Grogu movement/view, presentation, staging and release verification. Existing streets, interiors, residents, score and companion interactions remain supported.
