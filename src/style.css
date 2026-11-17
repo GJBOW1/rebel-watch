@@ -28,3 +28,8 @@
 .boss-active #combat-panel{display:none!important}.boss-active #field-note{top:155px}.journal-stock{font:10px var(--mono);color:#c8b686;margin-bottom:16px}
 
 .journal-dialog .objectives{margin-top:24px;padding-top:20px;border-top:1px solid #8c9d8633}.journal-dialog .objectives[hidden]{display:none}
+
+/* Compliance 2026-11-16: fan disclaimer + legal links on the intro card */
+.intro-card>p.intro-legal{margin:14px 0 0;font-size:11px;line-height:1.6;letter-spacing:.02em;color:rgba(232,226,214,.72)}
+.intro-card .intro-legal a{color:inherit;text-decoration:underline;text-underline-offset:3px;display:inline-block;padding:4px 2px}
+.intro-card .intro-legal a:focus-visible{outline:2px solid #e6a15a;outline-offset:2px;border-radius:3px}
